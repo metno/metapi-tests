@@ -1,6 +1,6 @@
 Feature: Get toplevel page
 
-  @get_toplevel_page
+  @toplevel @get_toplevel_page
   Scenario: Get toplevel page
     Given n/a
     When I make an HTTP GET request for /

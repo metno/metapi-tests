@@ -29,6 +29,20 @@ Tags:
 By default, all scenarios are run. To run scenarios for certain tags only, set the `CUCUMBER_OPTIONS` environment variable
 like this:
 
-  `CUCUMBER_OPTIONS="--tags @get_secure_hello_authenticated,@get_toplevel_page,@get_hello" METAPIBASE=... CLIENTID=... TIMEOUTMILLISECONDS=... sbt test`
+  `CUCUMBER_OPTIONS="--tags @get_secure_hello_authenticated,@get_toplevel_page,@get_hello" METAPIBASE=... ...`
 
 **Note:** The tag list cannot contain spaces!
+
+Scenarios are also tagged according to module. The following command runs all scenarios for the observations module:
+
+  `CUCUMBER_OPTIONS="--tags @observations" METAPIBASE=... ...`
+
+while the following command runs those of the elements module:
+
+  `CUCUMBER_OPTIONS="--tags @elements" METAPIBASE=... ...`
+
+and so on.
+
+Here's a quick way to list tags associated with each scenario:
+
+`find src -name \*.feature | xargs grep @`

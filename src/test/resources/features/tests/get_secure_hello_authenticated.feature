@@ -1,6 +1,6 @@
 Feature: Read /tests/secureHello authenticated
 
-  @get_secure_hello_authenticated
+  @tests @get_secure_hello_authenticated
   Scenario: Read /tests/secureHello authenticated
     Given n/a
     When I make an HTTP GET request for /tests/secureHello, passing a valid client ID

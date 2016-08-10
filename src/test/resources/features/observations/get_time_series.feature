@@ -1,6 +1,6 @@
 Feature: Get time series
 
-  @get_time_series
+  @observations @get_time_series
   Scenario: Get time series
     Given n/a
     When I make an HTTP GET request for /observations/timeSeries/v0.jsonld?sources=KN18700

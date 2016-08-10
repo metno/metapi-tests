@@ -68,6 +68,18 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
     // nothing to be done in this case
   }
 
+  Then("""^I should get a response with status code = 200 and a body in valid JSON-LD format""") { () =>
+    Try(Await.result(futureResponse, timeout)) match {
+      case Success(response) =>
+        assertResult(Status.OK) {
+          response.status
+        }
+        Json.parse(response.body)
+      case Failure(error) =>
+        throw error
+    }
+  }
+
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Steps used only in scenario "Get toplevel page" (file: get_toplevel_page.feature)
@@ -162,16 +174,13 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
       .withAuth(clientId, "", BASIC).get()
   }
 
-  Then("""^I should get a response with status code = 200 and a body in valid JSON-LD format""") { () =>
-    Try(Await.result(futureResponse, timeout)) match {
-      case Success(response) =>
-        assertResult(Status.OK) {
-          response.status
-        }
-        Json.parse(response.body)
-      case Failure(error) =>
-        throw error
-    }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Steps used only in scenario "Get single element" (file: get_single_element.feature)
+
+  When("""^I make an HTTP GET request for /elements/air_temperature/v0.jsonld\?lang=en-US$"""){ () =>
+    futureResponse = NingWSClient().url(metapiBase + "/elements/air_temperature/v0.jsonld?lang=en-US")
+      .withAuth(clientId, "", BASIC).get()
   }
 
 }

@@ -1,6 +1,6 @@
 Feature: Get hello
 
-  @get_hello
+  @tests @get_hello
   Scenario: Get hello
     Given n/a
     When I make an HTTP GET request for /tests/hello
