@@ -55,6 +55,14 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
     case util.Failure(ex) => throw new Exception("TIMEOUTMILLISECONDS not found")
   }
 
+  def formatResponseBody(responseBody: String): String = {
+    s"""
+---BEGIN response body ------------------------------------
+${responseBody}
+---END response body --------------------------------------
+"""
+  }
+
   val timeout = Duration(timeoutMilliseconds, MILLISECONDS)
 
   // scalastyle:off null
@@ -71,7 +79,7 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   Then("""^I should get a response with status code = 200 and a body in valid JSON-LD format""") { () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
-        assertResult(Status.OK) {
+        assertResult(Status.OK, formatResponseBody(response.body)) {
           response.status
         }
         Json.parse(response.body)
@@ -91,8 +99,10 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   Then("""^I should get a response with status code = 200 and body containing 'API Overview'$"""){ () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
-        assertResult(Status.OK) { response.status }
-        assert(response.body.contains("API Overview"))
+        assertResult(Status.OK, formatResponseBody(response.body)) {
+          response.status
+        }
+        assert(response.body.contains("API Overview"), formatResponseBody(response.body))
       case Failure(error) =>
         throw error
     }
@@ -109,10 +119,10 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   Then("""^I should get a response with status code = 200 and body = 'Hello to you too!'""") { () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
-        assertResult(Status.OK) {
+        assertResult(Status.OK, formatResponseBody(response.body)) {
           response.status
         }
-        assertResult("Hello to you too!") {
+        assertResult("Hello to you too!", formatResponseBody(response.body)) {
           response.body.trim()
         }
       case Failure(error) =>
@@ -131,10 +141,10 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   Then("""^I should get a response with status code = 401 and body = 'Missing authentication token!'""") { () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
-        assertResult(Status.UNAUTHORIZED) {
+        assertResult(Status.UNAUTHORIZED, formatResponseBody(response.body)) {
           response.status
         }
-        assertResult("Missing authentication token") {
+        assertResult("Missing authentication token", formatResponseBody(response.body)) {
           response.body.trim()
         }
       case Failure(error) =>
@@ -154,10 +164,10 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   Then("""^I should get a response with status code = 200 and body = 'Hello to you too, securely!'""") { () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
-        assertResult(Status.OK) {
+        assertResult(Status.OK, formatResponseBody(response.body)) {
           response.status
         }
-        assertResult("Hello to you too, securely!") {
+        assertResult("Hello to you too, securely!", formatResponseBody(response.body)) {
           response.body.trim()
         }
       case Failure(error) =>
