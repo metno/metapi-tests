@@ -169,8 +169,8 @@ class CucumberTest extends ScalaDsl with EN with Matchers {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Steps used only in scenario "Get time series" (file: get_time_series.feature)
 
-  When("""^I make an HTTP GET request for /observations/timeSeries/v0.jsonld\?sources=KN18700$"""){ () =>
-    futureResponse = NingWSClient().url(metapiBase + "/observations/timeSeries/v0.jsonld?sources=KN18700")
+  When("""^I make an HTTP GET request for /observations/timeSeries/v0.jsonld\?sources=KN(\d+)$"""){ (station:Int) =>
+    futureResponse = NingWSClient().url(metapiBase + s"/observations/timeSeries/v0.jsonld?sources=KN$station")
       .withAuth(clientId, "", BASIC).get()
   }
 
