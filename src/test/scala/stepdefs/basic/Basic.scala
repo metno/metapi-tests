@@ -23,71 +23,19 @@
     MA 02110-1301, USA
 */
 
-package stepdefs
+package stepdefs.basic
 
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.Matchers
-import play.api.libs.json.Json
 import play.api.libs.ws.WSAuthScheme.BASIC
-import play.api.libs.ws.WSResponse
 import play.api.libs.ws.ning.NingWSClient
 import play.mvc.Http._
-
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
+import scala.concurrent.Await
 import scala.util.{Failure, Success, Try}
+import stepdefs.Util._
 
-// Note: EN=English (see for example https://jar-download.com/java-documentation-javadoc.php?a=cucumber-scala_2.11&g=info.cukes&v=1.2.4)
-class CucumberTest extends ScalaDsl with EN with Matchers {
 
-  def metapiBase: String = util.Try(sys.env("METAPIBASE")) match {
-    case util.Success(x) => x
-    case util.Failure(ex) => throw new Exception("METAPIBASE not found")
-  }
-
-  def clientId: String = util.Try(sys.env("CLIENTID")) match {
-    case util.Success(x) => x
-    case util.Failure(ex) => throw new Exception("CLIENTID not found")
-  }
-
-  def timeoutMilliseconds: Int = util.Try(sys.env("TIMEOUTMILLISECONDS")) match {
-    case util.Success(x) => x.toInt
-    case util.Failure(ex) => throw new Exception("TIMEOUTMILLISECONDS not found")
-  }
-
-  def formatResponseBody(responseBody: String): String = {
-    s"""
----BEGIN response body ------------------------------------
-${responseBody}
----END response body --------------------------------------
-"""
-  }
-
-  val timeout = Duration(timeoutMilliseconds, MILLISECONDS)
-
-  // scalastyle:off null
-  var futureResponse: Future[WSResponse] = null
-  // scalastyle:on null
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Steps used by more than one scenario
-
-  Given("""^n/a$"""){ () =>
-    // nothing to be done in this case
-  }
-
-  Then("""^I should get a response with status code = 200 and a body in valid JSON-LD format""") { () =>
-    Try(Await.result(futureResponse, timeout)) match {
-      case Success(response) =>
-        assertResult(Status.OK, formatResponseBody(response.body)) {
-          response.status
-        }
-        Json.parse(response.body)
-      case Failure(error) =>
-        throw error
-    }
-  }
-
+class Basic extends ScalaDsl with EN with Matchers {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Steps used only in scenario "Get toplevel page" (file: get_toplevel_page.feature)
@@ -173,24 +121,6 @@ ${responseBody}
       case Failure(error) =>
         throw error
     }
-  }
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Steps used only in scenario "Get time series" (file: get_time_series.feature)
-
-  When("""^I make an HTTP GET request for /observations/timeSeries/v0.jsonld\?sources=KN(\d+)$"""){ (station:Int) =>
-    futureResponse = NingWSClient().url(metapiBase + s"/observations/timeSeries/v0.jsonld?sources=KN$station")
-      .withAuth(clientId, "", BASIC).get()
-  }
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Steps used only in scenario "Get single element" (file: get_single_element.feature)
-
-  When("""^I make an HTTP GET request for /elements/air_temperature/v0.jsonld\?lang=en-US$"""){ () =>
-    futureResponse = NingWSClient().url(metapiBase + "/elements/air_temperature/v0.jsonld?lang=en-US")
-      .withAuth(clientId, "", BASIC).get()
   }
 
 }
