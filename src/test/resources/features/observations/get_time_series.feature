@@ -3,7 +3,7 @@ Feature: Get time series
   @observations @get_time_series
   Scenario Outline: Get time series
     Given n/a
-    When I make an HTTP GET request for /observations/timeSeries/v0.jsonld?sources=KN<station>
+    When I make an HTTP GET request for /observations/timeSeries/v0.jsonld?sources=SN<station>
     Then I should get a response with status code = 200 and a body in valid JSON-LD format
 
     Examples:
