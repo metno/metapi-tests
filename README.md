@@ -46,3 +46,49 @@ and so on.
 Here's a quick way to list tags associated with each scenario:
 
 `find src -name \*.feature | xargs grep @`
+
+
+Generic HTTP request/response testing:
+--------------------------------------
+
+In acceptance testing based on Cucumber, it may be useful to be able to decide if only a subset of the JSON body is present in a HTTP response.
+This is supported by allowing the following format for the _When_ and _Then_ steps in a scenario:
+
+```
+  Scenario <test name>
+    Given n/a
+
+    When request_get <test name>
+    """
+    < the part of the URI that comes after METAPIBASE/ >
+    """
+
+    Then response_<test type>_<expected status code> <test name>
+    """
+    <expected response body (JSON subset)>
+    """
+```
+
+The test fails if any of the following conditions become true:
+
+* The expected status code differs from the actual one.
+
+* Comparison of the expected response body with the actual one fails according to the _test type_.
+
+Currently, only 'jsonSubset' is supported for test type. This test checks if the expected response body (if non-empty) is a JSON subset of the actual response body:
+At any point in the expected JSON structure, the toplevel keys of an _object_ must be a subset of the toplevel keys of the corresponding object
+in the actual structure. For an _array_, the items in the expected structure must be a subset of the items of the corresponding array in the actual structure.
+Array items must also occur in the same order.
+
+The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped. For example:
+
+```
+      Then response_jsonSubset_200 response test #1
+      """
+      {
+         "foo1": "bar",
+         "foo2": "b[0-9]+r",
+         "foo3": "b\\d+r"
+      }
+      """
+```
