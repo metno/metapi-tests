@@ -28,7 +28,7 @@ package stepdefs
 import org.scalatest.Matchers
 import play.api.libs.json._
 import play.api.libs.ws.WSResponse
-import stepdefs.JsonUtil.{assertSubsetOf, formatSubsetMismatch}
+import stepdefs.JsonUtil.{assertSubsetOf, formatSubsetComparison}
 import scala.util.{Failure, Success, Try}
 
 
@@ -47,14 +47,24 @@ object ResponseTester extends cucumber.api.scala.ScalaDsl with Matchers {
         Try(assertSubsetOf(Json.parse(expBody), Json.parse(response.body.toString))) match {
           case Failure(e) => { // propagate with additional info
             throw new Exception(
-              "(JSON subset mismatch)" + JsonUtil.formatSubsetMismatch(expBody, response.body.toString) + e.getMessage)
+              "(JSON subset mismatch)" + JsonUtil.formatSubsetComparison(expBody, response.body.toString, true) + e.getMessage)
           }
           case Success(()) => // nothing to be done
         }
       }
-      //case "<TYPE 2>" => ...
+
+      case "notJsonSubset" => {
+        Try(assertSubsetOf(Json.parse(expBody), Json.parse(response.body.toString))) match {
+          case Success(()) => { // propagate
+            throw new Exception("JSON subset match (unexpected))" + JsonUtil.formatSubsetComparison(expBody, response.body.toString, false))
+          }
+          case Failure(e) => // expected, so nothing to be done
+        }
+      }
+
       //case "<TYPE 3>" => ...
       // ...
+
       case other => throw new Exception(s"unsupported response test type: $other")
     }
   }

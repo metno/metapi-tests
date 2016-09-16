@@ -31,7 +31,9 @@ like this:
 
   `CUCUMBER_OPTIONS="--tags @get_secure_hello_authenticated,@get_toplevel_page,@get_hello" METAPIBASE=... ...`
 
-**Note:** The tag list cannot contain spaces!
+**Note 1:** The tag list cannot contain spaces.
+
+**Note 2:** The tag itself cannot contain certain characters, like colons (':').
 
 Scenarios are also tagged according to module. The following command runs all scenarios for the observations module:
 
@@ -46,6 +48,7 @@ and so on.
 Here's a quick way to list tags associated with each scenario:
 
 `find src -name \*.feature | xargs grep @`
+
 
 
 Generic HTTP request/response testing:
@@ -75,10 +78,33 @@ The test fails if any of the following conditions become true:
 
 * Comparison of the expected response body with the actual one fails according to the _test type_.
 
-Currently, only 'jsonSubset' is supported for test type. This test checks if the expected response body (if non-empty) is a JSON subset of the actual response body:
-At any point in the expected JSON structure, the toplevel keys of an _object_ must be a subset of the toplevel keys of the corresponding object
-in the actual structure. For an _array_, the items in the expected structure must be a subset of the items of the corresponding array in the actual structure.
+Currently, only `jsonSubset` and `notJsonSubset` are supported for test type:
+
+* The `jsonSubset` test checks if the expected response body (if non-empty) is a JSON subset of the actual response body:
+At any point in the expected JSON structure, the toplevel keys of an _object_ must be a subset of the toplevel keys of the corresponding object in the actual structure.
+For an _array_, the items in the expected structure must be a subset of the items of the corresponding array in the actual structure.
 Array items must also occur in the same order.
+
+* The `notJsonSubset` test is simply the negation of `jsonSubset`, i.e. it fails iff `jsonSubset` would have passed.
+
+The following example shows how to verify that the response body contains a certain JSON subset but not a certain other JSON subset:
+
+```
+  Scenario <test name>
+    Given ...
+
+    When ...
+
+    Then response_jsonSubset_200 test 1
+    """
+    <JSON subset that must occur in the response body>
+    """
+
+    And response_notJsonSubset_200 test 1
+    """
+    <JSON subset that must NOT occur in the response body>
+    """
+```
 
 The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped. For example:
 
@@ -86,9 +112,11 @@ The expected response body may contain regular expressions for basic (non-collec
       Then response_jsonSubset_200 response test #1
       """
       {
-         "foo1": "bar",
-         "foo2": "b[0-9]+r",
-         "foo3": "b\\d+r"
+         "foo1": "bar",       ----> matches the string "bar"
+         "foo2": "b[0-9]+r",  ----> matches a string beginning with the character 'b' followed by one or more decimal digits, followed by the character 'r'
+         "foo3": "b\\d+r",    ----> ditto
+         "foo4": "ba*r",      ----> matches a string beginning with the character 'b' followed by zero or more 'a' characters, followed by the character 'r'
+         "foo5": "ba\\*r"     ----> matches the string "ba*r"
       }
       """
 ```

@@ -83,6 +83,14 @@ object JsonUtil {
     }
   }
 
+  private def stripDoubleQuotes(s: String): String = {
+    if ((s.length > 1) && (s(0) == '\"') && (s(s.length - 1) == '\"')) {
+      s.substring(1, s.length - 1)
+    } else {
+      s
+    }
+  }
+
   private def assertStringMatch(val1: JsValue, val2: JsValue) = {
     assert(!isCollection(val1))
     if (isCollection(val2)) {
@@ -91,7 +99,7 @@ object JsonUtil {
 
     val s1: String = val1.toString().replaceAll("""\\\\""", """\\""")
     val s2: String = val2.toString()
-    if (!(s2 matches s1)) {
+    if ((!(s2 matches s1)) && (!(s2 matches stripDoubleQuotes(s1)))) {
       throw new Exception(">" + s2 + "< does not match >" + s1 + "<")
     }
   }
@@ -100,19 +108,21 @@ object JsonUtil {
   private def isArray(jsonVal: JsValue): Boolean = { jsonVal.asOpt[JsArray].isDefined }
   private def isCollection(jsonVal: JsValue): Boolean = { isObject(jsonVal) || isArray(jsonVal) }
 
-  def formatSubsetMismatch(s1: String, s2: String): String = {
+  def formatSubsetComparison(s1: String, s2: String, mismatch: Boolean): String = {
     val maxSize = 1000
     var s1x = s1.substring(0, Math.min(s1.length, maxSize))
     if (maxSize < s1.length) { s1x = s1x + "\n[" + (s1.length - maxSize) + " characters omitted]" }
     var s2x = s2.substring(0, Math.min(s2.length, maxSize))
     if (maxSize < s2.length) { s2x = s2x + "\n[" + (s2.length - maxSize) + " characters omitted]" }
 
+    val not = if (mismatch) "not " else ""
+
     s"""
 ---BEGIN JSON value 1 ------------------------------------
 $s1x
 ---END JSON value 1 --------------------------------------
 
-is not a subset of
+is ${not}a subset of
 
 ---BEGIN JSON value 2 ------------------------------------
 $s2x
@@ -120,8 +130,8 @@ $s2x
 """
   }
 
-  def formatSubsetMismatch(jsonVal1: JsValue, jsonVal2: JsValue): String = {
-    formatSubsetMismatch(jsonVal1.toString(), jsonVal2.toString())
+  def formatSubsetComparison(jsonVal1: JsValue, jsonVal2: JsValue, mismatch: Boolean): String = {
+    formatSubsetComparison(jsonVal1.toString(), jsonVal2.toString(), mismatch)
   }
 
   def test(): Unit = {
