@@ -40,26 +40,47 @@ object JsonUtil {
     case v => assertStringMatch(v, val2)
   }
 
-  private def assertArraySubsetOf(arr1: JsArray, val2: JsValue) = {
+  private def assertArraySubsetOf(arr1: JsArray, val2: JsValue): Unit = {
     if (!isArray(val2)) {
       throw new Exception("comparing array with non-array: " + val2)
     }
 
     val arr2: JsArray = val2.asOpt[JsArray].get
 
+    var i1: Int = 0
     var i2: Int = 0
-    for (i1 <- arr1.value.indices) {
-      val subsetMatch = util.Try(assertSubsetOf(arr1(i1).get, arr2(i2).get)) == util.Success(()) // don't propagate any exception in this case!
-      while ((i2 < arr2.value.size) && (!subsetMatch)) {
-        // skip unmatched range in arr2
+    if (arr1.value.size == 0) {
+      // scalastyle:off return
+      return // an empty array matches any other array by definition
+      // scalastyle:on
+    }
+
+    while (true) {
+      // assert(i1 < arr1.value.size)
+      // assert(i2 < arr2.value.size)
+      val subsetMatch: Boolean = util.Try(assertSubsetOf(arr1(i1).get, arr2(i2).get)) == util.Success(()) // don't propagate any exception in this case!
+
+      if (subsetMatch) {
+        // pair matched, so advance both arrays
+        i1 = i1 + 1
+        i2 = i2 + 1
+      } else {
+        // pair did not match, so advance arr2 only
         i2 = i2 + 1
       }
-      if (i2 == arr2.value.size) {
+
+      if (i1 == arr1.value.size) { // arr1 exhausted
+        // scalastyle:off return
+        return // all items matched
+        // scalastyle:on
+      }
+
+      if (i2 == arr2.value.size) { // arr2 exhausted
         throw new Exception(s"value at index $i1 in array 1 not found in a valid range in array 2")
       }
 
-      i2 = i2 + 1 // move to the item in arr2 after the one we just matched
     }
+
   }
 
   private def assertObjectSubsetOf(obj1: JsObject, val2: JsValue) = {

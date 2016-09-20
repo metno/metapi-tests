@@ -78,7 +78,7 @@ The test fails if any of the following conditions become true:
 
 * Comparison of the expected response body with the actual one fails according to the _test type_.
 
-Currently, only `jsonSubset` and `notJsonSubset` are supported for test type:
+Currently, `jsonSubset`, `notJsonSubset`, and `statusOnly` are supported for test type:
 
 * The `jsonSubset` test checks if the expected response body (if non-empty) is a JSON subset of the actual response body:
 At any point in the expected JSON structure, the toplevel keys of an _object_ must be a subset of the toplevel keys of the corresponding object in the actual structure.
@@ -86,6 +86,16 @@ For an _array_, the items in the expected structure must be a subset of the item
 Array items must also occur in the same order.
 
 * The `notJsonSubset` test is simply the negation of `jsonSubset`, i.e. it fails iff `jsonSubset` would have passed.
+
+* The `statusOnly` test is for cases where we only care about the status code (and not the response body).
+**Note:** You still need to specify the docstring below the first line of the step even if it is ignored in this case:
+```
+    Then response_statusOnly_400 test 1
+    """
+    n/a
+    """
+```
+
 
 The following example shows how to verify that the response body contains a certain JSON subset but not a certain other JSON subset:
 

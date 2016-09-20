@@ -62,10 +62,13 @@ object ResponseTester extends cucumber.api.scala.ScalaDsl with Matchers {
         }
       }
 
+      case "statusOnly" => // status code already checked above, so we're done
+
       //case "<TYPE 3>" => ...
       // ...
 
       case other => throw new Exception(s"unsupported response test type: $other")
     }
   }
+
 }
