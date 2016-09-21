@@ -163,7 +163,7 @@ Feature: Basic tests for frequencies module
 
     Given n/a
 
-    When request_get undupported durations
+    When request_get unsupported durations
     """
     frequencies/rainfallIDFs/v0.jsonld?durations=20,12345,10
     """

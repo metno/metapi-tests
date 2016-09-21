@@ -163,7 +163,7 @@ Feature: Basic tests for frequencies module
 
     Given n/a
 
-    When request_get undupported frequencies
+    When request_get unsupported frequencies
     """
     frequencies/rainfallIDFs/v0.jsonld?frequencies=25,12345,20
     """
