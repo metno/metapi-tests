@@ -3,14 +3,14 @@
 Play project that uses Cucumber to run acceptance (end-to-end) tests against a stand-alone MET API service.
 
 
-Usage:
-------
+Basic usage:
+------------
 
 Executing the following command:
 
-  `METAPIBASE=<first part of URL> CLIENTID=<client ID> TIMEOUTMILLISECONDS=<http request timeout> sbt test`
+  `METAPIBASE=<first part of URL> sbt test`
 
-(e.g. METAPIBASE=https://staging-data.met.no CLIENTID=a8c7ae79-f3a7-4d60-51e8-2b610817d438 TIMEOUTMILLISECONDS=10000 sbt test)
+(e.g. METAPIBASE=https://staging-data.met.no sbt test)
 
 will run all the Cucumber tests and generate an HTML report in
 
@@ -20,7 +20,29 @@ and a JSON report in
 
   `target/cucumber-report.json`
 
-(Follow instructions on https://staging-data.met.no to get a client ID.)
+
+Test an authenticating server:
+------------------------------
+
+Specify the client ID to test a server with authentication enabled (i.e. where auth.active has not been set to false in application.conf):
+
+  `METAPIBASE=<first part of URL> CLIENTID=<client ID> sbt test`
+
+(e.g. METAPIBASE=https://staging-data.met.no CLIENTID=a8c7ae79-f3a7-4d60-51e8-2b610817d438 TIMEOUTMILLISECONDS=10000 sbt test)
+
+Follow instructions on https://staging-data.met.no to get a client ID.
+
+
+Specify a timeout for the server:
+---------------------------------
+
+The server timeout can be set like this:
+
+  `METAPIBASE=<first part of URL> TIMEOUTMILLISECONDS=<http request timeout> sbt test`
+
+If the server does not respond to an http request within this timeout, the test in question is flagged as failed.
+
+The default value is 10000 (i.e. 10 secs).
 
 
 Tags:
@@ -49,6 +71,15 @@ Here's a quick way to list tags associated with each scenario:
 
 `find src -name \*.feature | xargs grep @`
 
+
+Test a local server that runs a single module:
+----------------------------------------------
+
+To test a local server that runs a single module, such as the _frequencies_ module, we can use a combination of tags and REQUESTPREFIX like this:
+
+  `CUCUMBER_OPTIONS="--tags @frequencies" METAPIBASE=localhost:9000 REQUESTPREFIX=frequencies/ sbt test`
+
+In this case, all occurrences of "frequencies/" in the Gherkin source will be stripped from the URL before the HTTP request is executed.
 
 
 Generic HTTP request/response testing:

@@ -27,12 +27,17 @@ package stepdefs
 
 import play.api.libs.ws.WSAuthScheme.BASIC
 import play.api.libs.ws.ning.NingWSClient
-import stepdefs.Util.{futureResponse, metapiBase, clientId}
+import stepdefs.Util.{futureResponse, metapiBase, requestPrefix, clientId}
 
 
 object RequestTester extends cucumber.api.scala.ScalaDsl {
 
   def exec(testName: String, request: String): Unit = {
-    futureResponse = NingWSClient().url(metapiBase + "/" + request).withAuth(clientId, "", BASIC).get()
+    val url = metapiBase + "/" + request.stripPrefix(requestPrefix)
+    futureResponse = clientId match {
+      case cid if cid.isEmpty => NingWSClient().url(url).get()
+      case cid => NingWSClient().url(url).withAuth(clientId, "", BASIC).get()
+    }
   }
+
 }

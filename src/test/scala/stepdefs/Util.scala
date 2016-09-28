@@ -40,14 +40,19 @@ object Util {
     case util.Failure(ex) => throw new Exception("METAPIBASE not found")
   }
 
+  def requestPrefix: String = util.Try(sys.env("REQUESTPREFIX")) match {
+    case util.Success(x) => x
+    case util.Failure(ex) => ""
+  }
+
   def clientId: String = util.Try(sys.env("CLIENTID")) match {
     case util.Success(x) => x
-    case util.Failure(ex) => throw new Exception("CLIENTID not found")
+    case util.Failure(ex) => ""
   }
 
   def timeoutMilliseconds: Int = util.Try(sys.env("TIMEOUTMILLISECONDS")) match {
     case util.Success(x) => x.toInt
-    case util.Failure(ex) => throw new Exception("TIMEOUTMILLISECONDS not found")
+    case util.Failure(ex) => 10000
   }
 
   def formatResponseBody(responseBody: String): String = {
