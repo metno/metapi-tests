@@ -1,7 +1,7 @@
-Feature: Basic tests for frequencies module
+Feature: frequencies/rainfallIDFs/
 
 
-  @frequencies @frequencies-one-duration
+  @frequencies @frequencies-rainfallidfs-one-duration
   Scenario: one duration
 
     Specifying a single duration should return a result containing that duration only.
@@ -69,7 +69,7 @@ Feature: Basic tests for frequencies module
 }
     """
 
-  @frequencies @frequencies-two-durations
+  @frequencies @frequencies-rainfallidfs-two-durations
   Scenario: two durations
 
   Specifying two durations should return a result containing those durations only.
@@ -138,7 +138,7 @@ Feature: Basic tests for frequencies module
     """
 
 
-  @frequencies @frequencies-malformed-durations
+  @frequencies @frequencies-rainfallidfs-malformed-durations
   Scenario: malformed durations
 
   Specifying a malformed durations parameter should return a result with status code 400.
@@ -156,7 +156,7 @@ Feature: Basic tests for frequencies module
     """
 
 
-  @frequencies @frequencies-unsupported-durations
+  @frequencies @frequencies-rainfallidfs-unsupported-durations
   Scenario: unsupported durations
 
   Specifying one or more unsupported durations should return a result with status code 400.

@@ -1,7 +1,7 @@
-Feature: frequencies/rainfallIDFs/
+Feature: frequencies/rainfallIDFs/availableSources/
 
 
-  @frequencies @frequencies-rainfallidfs-single-field
+  @frequencies @frequencies-rainfallidfs-availablesources-single-field
   Scenario: single field
 
     Specifying a single field should return a result containing that field and none of the other (specifiable) fields.
@@ -10,7 +10,7 @@ Feature: frequencies/rainfallIDFs/
 
     When request_get single field
     """
-    frequencies/rainfallIDFs/v0.jsonld?fields=unit
+    frequencies/rainfallIDFs/availableSources/v0.jsonld?fields=validFrom
     """
 
     Then response_jsonSubset_200 single field
@@ -19,7 +19,8 @@ Feature: frequencies/rainfallIDFs/
   "data" :
   [
     {
-      "unit" : ".+"
+      "sourceId": "SN\\d+",
+      "validFrom" : ".+"
     }
   ]
 }
@@ -31,7 +32,7 @@ Feature: frequencies/rainfallIDFs/
   "data" :
   [
     {
-      "operatingPeriods" : [ ".+" ]
+      "validTo" : ".+"
     }
   ]
 }
@@ -50,7 +51,7 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-2
+  @frequencies @frequencies-rainfallidfs-availablesources-multiple-fields-2
   Scenario: multiple fields 2
 
     Specifying two fields should return a result containing those fields and none of the other (specifiable) fields.
@@ -59,7 +60,7 @@ Feature: frequencies/rainfallIDFs/
 
     When request_get multiple fields 2
     """
-    frequencies/rainfallIDFs/v0.jsonld?fields=unit,operatingPeriods
+    frequencies/rainfallIDFs/availableSources/v0.jsonld?fields=validFrom,validTo
     """
 
     Then response_jsonSubset_200 multiple fields 2
@@ -68,8 +69,9 @@ Feature: frequencies/rainfallIDFs/
   "data" :
   [
     {
-      "unit" : ".+",
-      "operatingPeriods" : [ ".+" ]
+      "sourceId": "SN\\d+",
+      "validFrom" : ".+",
+      "validTo" : ".+"
     }
   ]
 }
@@ -88,7 +90,7 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-all
+  @frequencies @frequencies-rainfallidfs-availablesources-multiple-fields-all
   Scenario: multiple fields all
 
     Specifying all fields should return a result containing those fields.
@@ -97,7 +99,7 @@ Feature: frequencies/rainfallIDFs/
 
     When request_get multiple fields all
     """
-    frequencies/rainfallIDFs/v0.jsonld?fields=unit,operatingPeriods,numberOfSeasons
+    frequencies/rainfallIDFs/availableSources/v0.jsonld?fields=validFrom,validTo,numberOfSeasons
     """
 
     Then response_jsonSubset_200 multiple fields all
@@ -106,16 +108,17 @@ Feature: frequencies/rainfallIDFs/
   "data" :
   [
     {
-      "unit" : ".+",
-      "operatingPeriods" : [ ".+" ],
-      "numberOfSeasons" : ".+"
+      "sourceId": "SN\\d+",
+      "validFrom" : ".+",
+      "validTo" : ".+",
+      "numberOfSeasons" : "\\d+"
     }
   ]
 }
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-all-permuted
+  @frequencies @frequencies-rainfallidfs-availablesources-multiple-fields-all-permuted
   Scenario: multiple fields all permuted
 
     Specifying all fields in a different order should still return a result containing those fields.
@@ -124,7 +127,7 @@ Feature: frequencies/rainfallIDFs/
 
     When request_get multiple fields all permuted
     """
-    frequencies/rainfallIDFs/v0.jsonld?fields=operatingPeriods,unit,numberOfSeasons
+    frequencies/rainfallIDFs/availableSources/v0.jsonld?fields=validTo,numberOfSeasons,validFrom
     """
 
     Then response_jsonSubset_200 multiple fields all permuted
@@ -133,9 +136,10 @@ Feature: frequencies/rainfallIDFs/
   "data" :
   [
     {
-      "unit" : ".+",
-      "numberOfSeasons" : ".+",
-      "operatingPeriods" : [ ".+" ]
+      "sourceId": "SN\\d+",
+      "validFrom" : ".+",
+      "validTo" : ".+",
+      "numberOfSeasons" : "\\d+"
     }
   ]
 }

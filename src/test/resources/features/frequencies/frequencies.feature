@@ -1,7 +1,7 @@
-Feature: Basic tests for frequencies module
+Feature: frequencies/rainfallIDFs/
 
 
-  @frequencies @frequencies-one-frequency
+  @frequencies @frequencies-rainfallidfs-one-frequency
   Scenario: one frequency
 
     Specifying a single frequency should return a result containing that frequency only.
@@ -69,7 +69,7 @@ Feature: Basic tests for frequencies module
 }
     """
 
-  @frequencies @frequencies-two-frequencies
+  @frequencies @frequencies-rainfallidfs-two-frequencies
   Scenario: two frequencies
 
   Specifying two frequencies should return a result containing those frequencies only.
@@ -138,7 +138,7 @@ Feature: Basic tests for frequencies module
     """
 
 
-  @frequencies @frequencies-malformed-frequencies
+  @frequencies @frequencies-rainfallidfs-malformed-frequencies
   Scenario: malformed frequencies
 
   Specifying a malformed frequencies parameter should return a result with status code 400.
@@ -156,7 +156,7 @@ Feature: Basic tests for frequencies module
     """
 
 
-  @frequencies @frequencies-unsupported-frequencies
+  @frequencies @frequencies-rainfallidfs-unsupported-frequencies
   Scenario: unsupported frequencies
 
   Specifying one or more unsupported frequencies should return a result with status code 400.

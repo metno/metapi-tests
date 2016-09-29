@@ -1,7 +1,7 @@
-Feature: frequencies/rainfallIDFs/
+Feature: frequencies/rainfallIDFs/availableSources/
 
 
-  @frequencies @frequencies-rainfallidfs-empty-request
+  @frequencies @frequencies-rainfallidfs-availablesources-empty-request
   Scenario: empty request
 
     An empty query string should return a reasonable result.
@@ -10,14 +10,14 @@ Feature: frequencies/rainfallIDFs/
 
     When request_get empty request
     """
-    frequencies/rainfallIDFs/v0.jsonld
+    frequencies/rainfallIDFs/availableSources/v0.jsonld
     """
 
     Then response_jsonSubset_200 empty request
     """
 {
   "@context" : "https://data.met.no/schema/",
-  "@type" : "RainfallIDFResponse",
+  "@type" : "RainfallIDFSourcesResponse",
   "apiVersion" : "v0",
   "license" : ".+",
   "createdAt" : ".+",
@@ -31,17 +31,9 @@ Feature: frequencies/rainfallIDFs/
   [
     {
       "sourceId" : "SN\\d+",
-      "operatingPeriods" : [ ".+" ],
-      "numberOfSeasons" : "\\d+",
-      "unit" : "l/s\\*Ha",
-      "values" :
-      [
-        {
-          "intensity" : "\\d+.\\d+",
-          "duration" : "\\d+",
-          "frequency" : "\\d+"
-        }
-      ]
+      "validFrom" : ".+",
+      "validTo" : ".+",
+      "numberOfSeasons" : "\\d+"
     }
   ]
 }
