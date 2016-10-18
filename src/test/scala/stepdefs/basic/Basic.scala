@@ -33,6 +33,7 @@ import play.mvc.Http._
 import scala.concurrent.Await
 import scala.util.{Failure, Success, Try}
 import stepdefs.Util._
+import stepdefs.ResponseTester
 
 
 class Basic extends ScalaDsl with EN with Matchers {
@@ -92,9 +93,24 @@ class Basic extends ScalaDsl with EN with Matchers {
         assertResult(Status.UNAUTHORIZED, formatResponseBody(response.body)) {
           response.status
         }
-        assertResult("Missing authentication token", formatResponseBody(response.body)) {
-          response.body.trim()
-        }
+        val expBody =
+          """
+            {
+              "@context" : "https://data.met.no/schema/",
+              "@type" : "ErrorResponse",
+              "apiVersion" : "v\\d+",
+              "license" : ".+",
+              "createdAt" : ".+",
+              "queryTime" : ".+",
+              "currentLink" : ".+",
+              "error" : {
+                "code" : 401,
+                "message" : "Unauthorized",
+                "reason" : "Missing authentication token"
+              }
+            }
+          """
+        ResponseTester.exec("missing_authentication_token", "jsonSubset", Status.UNAUTHORIZED, expBody, response)
       case Failure(error) =>
         throw error
     }
