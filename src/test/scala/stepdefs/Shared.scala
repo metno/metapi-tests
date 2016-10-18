@@ -44,6 +44,10 @@ class Shared extends ScalaDsl with EN with Matchers {
     // nothing to be done in this case
   }
 
+  Given("""^A valid public MET API client id"""){ () =>
+    // nothing to be done in this case
+  }
+
   Then("""^I should get a response with status code = 200 and a body in valid JSON-LD format""") { () =>
     Try(Await.result(futureResponse, timeout)) match {
       case Success(response) =>
@@ -51,6 +55,18 @@ class Shared extends ScalaDsl with EN with Matchers {
           response.status
         }
         Json.parse(response.body)
+      case Failure(error) =>
+        throw error
+    }
+  }
+
+  Then("""^I should get a response with status code = 404 and a body in valid JSON-LD format""") { () =>
+    Try(Await.result(futureResponse, timeout)) match {
+      case Success(response) =>
+        assertResult(Status.NOT_FOUND, formatResponseBody(response.body)) {
+          response.status
+        }
+        //Json.parse(response.body)
       case Failure(error) =>
         throw error
     }
