@@ -150,9 +150,15 @@ Feature: frequencies/rainfallIDFs/
     frequencies/rainfallIDFs/v0.jsonld?durations=20,foo,10
     """
 
-    Then response_statusOnly_400 malformed durations
+    Then response_jsonSubset_400 malformed durations
     """
-    n/a
+{
+  "error" : {
+    "code" : 400,
+    "message" : "Bad Request",
+    "reason" : "Malformed query parameter: durations \\(not a comma-separated list of integers\\)"
+  }
+}
     """
 
 
@@ -168,7 +174,13 @@ Feature: frequencies/rainfallIDFs/
     frequencies/rainfallIDFs/v0.jsonld?durations=20,12345,10
     """
 
-    Then response_statusOnly_400 unsupported durations
+    Then response_jsonSubset_400 unsupported durations
     """
-    n/a
+{
+  "error" : {
+    "code" : 400,
+    "message" : "Bad Request",
+    "reason" : "Invalid query parameter: durations \\(values \\(12345\\) not in supported set \\(1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120, 180, 360, 720, 1440\\)\\)"
+  }
+}
     """

@@ -149,7 +149,7 @@ The following example shows how to verify that the response body contains a cert
     """
 ```
 
-The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped. For example:
+The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped and parentheses must be double escaped. For example:
 
 ```
       Then response_jsonSubset_200 response test #1
@@ -159,7 +159,9 @@ The expected response body may contain regular expressions for basic (non-collec
          "foo2": "b[0-9]+r",  ----> matches a string beginning with the character 'b' followed by one or more decimal digits, followed by the character 'r'
          "foo3": "b\\d+r",    ----> ditto
          "foo4": "ba*r",      ----> matches a string beginning with the character 'b' followed by zero or more 'a' characters, followed by the character 'r'
-         "foo5": "ba\\*r"     ----> matches the string "ba*r"
+         "foo5": "ba\\*r",    ----> matches the string "ba*r"
+         "foo6": ".+",        ----> matches one or more characters"
+         "foo7": "ba\\(r\\)"  ----> matches the string "ba(r)"
       }
       """
 ```

@@ -150,9 +150,15 @@ Feature: frequencies/rainfallIDFs/
     frequencies/rainfallIDFs/v0.jsonld?frequencies=25,foo,20
     """
 
-    Then response_statusOnly_400 malformed frequencies
+    Then response_jsonSubset_400 malformed frequencies
     """
-    n/a
+{
+  "error" : {
+    "code" : 400,
+    "message" : "Bad Request",
+    "reason" : "Malformed query parameter: frequencies \\(not a comma-separated list of integers\\)"
+  }
+}
     """
 
 
@@ -168,7 +174,13 @@ Feature: frequencies/rainfallIDFs/
     frequencies/rainfallIDFs/v0.jsonld?frequencies=25,12345,20
     """
 
-    Then response_statusOnly_400 unsupported frequencies
+    Then response_jsonSubset_400 unsupported frequencies
     """
-    n/a
+{
+  "error" : {
+    "code" : 400,
+    "message" : "Bad Request",
+    "reason" : "Invalid query parameter: frequencies \\(values \\(12345\\) not in supported set \\(2, 5, 10, 20, 25, 50, 100, 200\\)\\)"
+  }
+}
     """
