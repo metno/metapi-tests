@@ -96,7 +96,7 @@ class Basic extends ScalaDsl with EN with Matchers {
         val expBody =
           """
             {
-              "@context" : "https://data.met.no/schema/",
+              "@context" : "https://data.met.no/schema",
               "@type" : "ErrorResponse",
               "apiVersion" : "v\\d+",
               "license" : ".+",

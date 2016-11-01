@@ -13,10 +13,10 @@
     Then response_jsonSubset_200 response test #1
     """
 {
-  "@context" : "https://data.met.no/schema/",
+  "@context" : "https://data.met.no/schema",
   "@type" : "ElementResponse",
   "apiVersion" : "v\\d+",
-  "license" : "http://met.no/English/Data_Policy_and_Data_Services/",
+  "license" : "https://creativecommons.org/licenses/by/3.0/no/",
   "offset" : 0,
   "data" : [ {
     "id" : "min\\(air_temperature 1M\\)"

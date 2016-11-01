@@ -16,7 +16,7 @@ Feature: frequencies/rainfallIDFs/availableSources/
     Then response_jsonSubset_200 empty request
     """
 {
-  "@context" : "https://data.met.no/schema/",
+  "@context" : "https://data.met.no/schema",
   "@type" : "RainfallIDFSourcesResponse",
   "apiVersion" : "v0",
   "license" : ".+",
