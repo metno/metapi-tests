@@ -95,13 +95,13 @@ This is supported by allowing the following format for the _When_ and _Then_ ste
     Given n/a
 
     When request_get
-    # <optional comment> 
+    # <optional comment>
     """
     < the part of the URI that comes after METAPIBASE/ >
     """
 
     Then response_<test type>_<expected status code>
-    # <optional comment> 
+    # <optional comment>
     """
     <expected response body (JSON subset)>
     """
