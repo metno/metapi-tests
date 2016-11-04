@@ -1,21 +1,23 @@
-Feature: sources/
+@sources @sources-fields
+Feature: sources/?fields
+  Acceptance tests for the query string field 'fields'.
 
 
-  @sources @sources-one-field
-  Scenario: one field
+  @sources-one-fields-value
+  Scenario: one fields value
 
-    Specifying one field should return data for that field only.
+    Specifying a single fields value should return data for that fields value only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get one field
-    # when we ask for data for one field ...
+    When request_get
+    # when we ask for data for one fields value ...
     """
     sources/v0.jsonld?ids=SN18700&fields=geometry
     """
 
-    Then response_jsonSubset_200 one field
-    # ... the response should contain data for that field ...
+    Then response_jsonSubset_200
+    # ... the response should contain data for that fields value ...
     """
 {
   "data" :
@@ -27,9 +29,9 @@ Feature: sources/
 }
     """
 
-    # ... but no data for any other fields (warning: only a subset of the other fields are checked, so the test is not 100% robust!)
+    # ... but no data for any other fields values (warning: only a subset of the other fields values are checked, so the test is not 100% robust!)
 
-    And response_notJsonSubset_200 one field
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -41,7 +43,7 @@ Feature: sources/
 }
     """
 
-    And response_notJsonSubset_200 one field
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -53,24 +55,24 @@ Feature: sources/
 }
     """
 
-    # could add more unexpected fields here ... TBD
+    # could add more unexpected fields values here ... TBD
 
 
-  @sources @sources-two-fields
-  Scenario: two fields
+  @sources-two-fields-values
+  Scenario: two fields values
 
-  Specifying two fields should return data for those fields only.
+  Specifying two fields values should return data for those fields values only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get two fields
-    # when we ask for data for two fields ...
+    When request_get
+    # when we ask for data for two fields values ...
     """
     sources/v0.jsonld?ids=SN18700&fields=geometry,id
     """
 
-    Then response_jsonSubset_200 two fields
-    # ... the response should contain data for those fields ...
+    Then response_jsonSubset_200
+    # ... the response should contain data for those fields values ...
     """
 {
   "data" :
@@ -83,9 +85,8 @@ Feature: sources/
 }
     """
 
-    # ... but no data for any other fields (warning: only a subset of the other fields are checked, so the test is not 100% robust!)
-
-    And response_notJsonSubset_200 two fields
+    # ... but no data for any other fields values (warning: only a subset of the other fields values are checked, so the test is not 100% robust!)
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -100,19 +101,19 @@ Feature: sources/
     # could add more unexpected fields here ... TBD
 
 
-  @sources @sources-unsupported-field
-  Scenario: unsupported field
+  @sources-unsupported-fields-value
+  Scenario: unsupported fields value
 
-  Specifying an unsupported field should result in 400/BadRequest
+  Specifying an unsupported fields value should result in 400/BadRequest
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get unsupported field
+    When request_get
     """
     sources/v0.jsonld?ids=SN18700&fields=foobar
     """
 
-    Then response_jsonSubset_400 unsupported field
+    Then response_jsonSubset_400
     """
 {
   "error" : {

@@ -1,19 +1,21 @@
+@sources @sources-overall
 Feature: sources/
+  Overall acceptance tests.
 
 
-  @sources @sources-empty-request
+  @sources-empty-request
   Scenario: empty request
 
     An empty query string should return a reasonable result.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get empty request
+    When request_get
     """
     sources/v0.jsonld
     """
 
-    Then response_jsonSubset_200 empty request
+    Then response_jsonSubset_200
     # Note that the following response is just one of many possible variations.
     """
 {
@@ -50,5 +52,28 @@ Feature: sources/
       "validFrom" : "\\d\\d\\d\\d-\\d\\d-\\d\\d"
     }
   ]
+}
+    """
+
+
+  @sources-unsupported-field
+  Scenario: unsupported field
+
+    Given a valid public MET API client ID
+
+    When request_get
+    """
+    sources/v0.jsonld?foo=bar
+    """
+
+    Then response_jsonSubset_400
+    """
+{
+  "error" : {
+    "code" : 400,
+    "message" : "Bad Request",
+    "reason" : "Unsupported field in query string: foo",
+    "help" : "Supported fields: validtime, fields, ids, types, geometry"
+  }
 }
     """

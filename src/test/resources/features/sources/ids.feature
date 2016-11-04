@@ -1,20 +1,21 @@
-Feature: sources/
+@sources @sources-ids
+Feature: sources/?ids
+  Acceptance tests for the query string field 'ids'.
 
-
-  @sources @sources-one-id
+  @sources-one-id
   Scenario: one source ID
 
-    Specifying a source ID should return data for that ID only.
+    Specifying a single source ID should return data for that ID only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get one id
+    When request_get
     # when we ask for data for one source ...
     """
     sources/v0.jsonld?ids=SN18700
     """
 
-    Then response_jsonSubset_200 one id
+    Then response_jsonSubset_200
     # ... the response should contain data for that source ...
     """
 {
@@ -27,7 +28,7 @@ Feature: sources/
 }
     """
 
-    And response_notJsonSubset_200 one id
+    And response_notJsonSubset_200
     # ... but no data for any other source (see http://stackoverflow.com/questions/406230/regular-expression-to-match-line-that-doesnt-contain-a-word )
     """
 {
@@ -41,20 +42,20 @@ Feature: sources/
     """
 
 
-  @sources @sources-two-ids
+  @sources-two-ids
   Scenario: two source IDs
 
   Specifying two source IDs should return data for those IDs only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get two ids
+    When request_get
     # when we ask for data for two sources ...
     """
     sources/v0.jsonld?ids=SN18700,SN18701
     """
 
-    Then response_jsonSubset_200 two ids
+    Then response_jsonSubset_200
     # ... the response should contain data for those two sources ...
     """
 {
@@ -67,7 +68,7 @@ Feature: sources/
 }
     """
 
-    And response_jsonSubset_200 two ids
+    And response_jsonSubset_200
     """
 {
   "data" :
@@ -79,7 +80,7 @@ Feature: sources/
 }
     """
 
-    And response_notJsonSubset_200 one id
+    And response_notJsonSubset_200
     # ... but no data for any other source than those two (see http://stackoverflow.com/questions/406230/regular-expression-to-match-line-that-doesnt-contain-a-word#comment51775736_23583655 )
     """
 {
@@ -93,19 +94,19 @@ Feature: sources/
     """
 
 
-  @sources @sources-invalid-source
+  @sources-invalid-source
   Scenario: invalid source
 
   Specifying an invalid source should return status=400
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get invalid source
+    When request_get
     """
     sources/v0.jsonld?ids=foobar
     """
 
-    Then response_jsonSubset_400 invalid source
+    Then response_jsonSubset_400
     """
 {
   "@type" : "ErrorResponse",
@@ -117,19 +118,20 @@ Feature: sources/
 }
     """
 
-  @sources @sources-non-existent-source
+
+  @sources-non-existent-source
   Scenario: invalid source
 
   Specifying a non-existent source should return status=404
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get non-existent source
+    When request_get
     """
     sources/v0.jsonld?ids=SN123456789
     """
 
-    Then response_jsonSubset_404 non-existent source
+    Then response_jsonSubset_404
     """
 {
   "@type" : "ErrorResponse",

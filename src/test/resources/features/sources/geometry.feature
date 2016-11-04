@@ -1,17 +1,19 @@
-Feature: sources/
+@sources @sources-geometry
+Feature: sources/?geometry
+  Acceptance tests for the query string field 'geometry'.
 
 
-  @sources @sources-unsupported-geometry
+  @sources-unsupported-geometry
   Scenario: unsupported geometry
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get unsupported geometry
+    When request_get
     """
     sources/v0.jsonld?geometry=foobar
     """
 
-    Then response_jsonSubset_400 unsupported geometry
+    Then response_jsonSubset_400
     """
 {
   "@type" : "ErrorResponse",

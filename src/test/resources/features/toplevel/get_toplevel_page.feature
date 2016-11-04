@@ -1,7 +1,8 @@
+@toplevel
 Feature: Get toplevel page
 
-  @toplevel @get_toplevel_page
+  @get_toplevel_page
   Scenario: Get toplevel page
-    Given n/a
+    Given a valid public MET API client ID
     When I make an HTTP GET request for /
     Then I should get a response with status code = 200 and body containing 'API Overview'

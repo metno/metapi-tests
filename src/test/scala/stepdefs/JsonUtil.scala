@@ -49,7 +49,7 @@ object JsonUtil {
 
     var i1: Int = 0
     var i2: Int = 0
-    if (arr1.value.size == 0) {
+    if (arr1.value.isEmpty) {
       // scalastyle:off return
       return // an empty array matches any other array by definition
       // scalastyle:on

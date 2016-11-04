@@ -44,7 +44,7 @@ class Shared extends ScalaDsl with EN with Matchers {
     // nothing to be done in this case
   }
 
-  Given("""^A valid public MET API client id"""){ () =>
+  Given("""^a valid public MET API client ID"""){ () =>
     // nothing to be done in this case
   }
 

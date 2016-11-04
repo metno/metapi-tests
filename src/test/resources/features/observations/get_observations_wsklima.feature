@@ -1,18 +1,20 @@
-@observations @get_observations_wsklima
+@observations @observations-wsklima-examples
 Feature: Get wsklima example observations
   Use the wsKlima example queries as test cases.
 
 
   @get_observations_wsklima-example0
   Scenario: Example 0
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I request observations for august and september only from 2004-2006
+    When request_get
+    # I request observations for august and september only from 2004-2006
     """
     observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature 1M),min(air_temperature 1M),sum(precipitation_amount 1M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 12,
@@ -26,14 +28,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example1
   Scenario: Example 1
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve monthly means for all months from July 2005 to July 2006
+    When request_get
+    # I retrieve monthly means for all months from July 2005 to July 2006
     """
     observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=max(air_temperature 1M),min(air_temperature 1M),sum(precipitation_amount 1M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 24,
@@ -46,14 +50,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example2
   Scenario: Example 2
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve all 00, 06, 12, 18 observations for January 2006
+    When request_get
+    # I retrieve all 00, 06, 12, 18 observations for January 2006
     """
     observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature T1H),max(air_temperature T1H)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 186,
@@ -66,14 +72,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example3
   Scenario: Example 3 (Note - not the same as normals - will need revision)
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve monthly means over a 30 year period
+    When request_get
+    # I retrieve monthly means over a 30 year period
     """
     observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature 1M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 720,
@@ -85,14 +93,16 @@ Feature: Get wsklima example observations
 
 #  @get_observations_wsklima-example4
 #  Scenario: Example 4 (Note - not the same as normals - will need revision)
-#    Given A valid public MET API client id
+#    Given a valid public MET API client ID
 #
-#    When request_get I retrieve daily means over a 30 year period
+#    When request_get
+#    # I retrieve daily means over a 30 year period
 #    """
 #    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature T24H)
 #    """
 #
-#    Then response_jsonSubset_200 gets a full set of data
+#    Then response_jsonSubset_200
+#    # get a full set of data
 #    """
 #{
 #  "totalItemCount": 720,
@@ -105,14 +115,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example8.1
   Scenario: Example 8.1
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve twice daily min and max temperatures for Gardermoen
+    When request_get
+    # I retrieve twice daily min and max temperatures for Gardermoen
     """
     observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature T12H),max(air_temperature T12H)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 60,
@@ -125,14 +137,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example8.2
   Scenario: Example 8.2
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve 0600 min and max temperatures for Gardermoen
+    When request_get
+    # I retrieve 0600 min and max temperatures for Gardermoen
     """
     observations/v0.jsonld?sources=SN4780:0&referencetime=R30/2008-09-01T06:00:00.000Z/2008-09-01T06:00:00.000Z/PT24H&elements=min(air_temperature T12H),max(air_temperature T12H)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 30,
@@ -145,14 +159,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example9
   Scenario: Example 9
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve 1200 min and max temperatures for Ekofisk
+    When request_get
+    # I retrieve 1200 min and max temperatures for Ekofisk
     """
     observations/v0.jsonld?sources=SN76920&referencetime=R30/2008-09-01T12:00/2008-09-01T12:00/PT24H&elements=max(air_temperature T1H),min(air_temperature T1H)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 29,
@@ -165,14 +181,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example14.1
   Scenario: Example 14.1
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve 10-minute precipitation observations for 12 UTC at Blindern in May 2016
+    When request_get
+    # I retrieve 10-minute precipitation observations for 12 UTC at Blindern in May 2016
     """
     observations/v0.jsonld?sources=SN18700:0&referencetime=R31/2016-05-01T12:00:00.000Z/2016-05-01T12:00:00.000Z/PT24H&elements=sum(precipitation_amount T10M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 31,
@@ -185,14 +203,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example14.2
   Scenario: Example 14.2
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I retrieve all 10-minute precipitation observations for Blindern in May 2016
+    When request_get
+    # I retrieve all 10-minute precipitation observations for Blindern in May 2016
     """
     observations/v0.jsonld?sources=SN18700:0&referencetime=2016-05-01T00:00:00.000Z/2016-06-01T00:00:00.000Z&elements=sum(precipitation_amount T10M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # gets a full set of data
     """
 {
   "totalItemCount": 4464,
@@ -205,14 +225,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example15.1
   Scenario: Example 15.1
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I look up which observations are available from Ekofisk
+    When request_get
+    # I look up which observations are available from Ekofisk
     """
     observations/availableTimeSeries/v0.jsonld?sources=SN76920
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "data" : [ {
@@ -224,14 +246,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example15.2
   Scenario: Example 15.2
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I request all of the max wind speed of gust 10-minute observations from Ekofisk
+    When request_get
+    # I request all of the max wind speed of gust 10-minute observations from Ekofisk
     """
     observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust T10M)
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 837,
@@ -244,14 +268,16 @@ Feature: Get wsklima example observations
 
   @get_observations_wsklima-example17
   Scenario: Example 17
-    Given A valid public MET API client id
+    Given a valid public MET API client ID
 
-    When request_get I request IVF data for Oslo-Blindern SN18701
+    When request_get
+    # I request IVF data for Oslo-Blindern SN18701
     """
     frequencies/rainfallIDFs/v0.jsonld?sources=SN18701
     """
 
-    Then response_jsonSubset_200 gets a full set of data
+    Then response_jsonSubset_200
+    # get a full set of data
     """
 {
   "totalItemCount": 1

@@ -1,20 +1,22 @@
-Feature: locations/
+@locations @locations-fields
+Feature: locations/?fields
+  Acceptance tests for the query string field 'fields'.
 
 
-  @locations @locations-one-fields-value
+  @locations-one-fields-value
   Scenario: one fields value
 
-    Specifying one fields value should return data for that fields value only.
+    Specifying a single fields value should return data for that fields value only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get one fields value
+    When request_get
     # when we ask for data for one fields value ...
     """
     locations/v0.jsonld?names=Lillehammer&fields=geometry
     """
 
-    Then response_jsonSubset_200 one fields value
+    Then response_jsonSubset_200
     # ... the response should contain data for that fields value ...
     """
 {
@@ -29,7 +31,7 @@ Feature: locations/
 
     # ... but no data for any other fields values (warning: only a subset of the other fields values are checked, so the test is not 100% robust!)
 
-    And response_notJsonSubset_200 one fields value
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -41,7 +43,7 @@ Feature: locations/
 }
     """
 
-    And response_notJsonSubset_200 one fields value
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -56,20 +58,20 @@ Feature: locations/
     # could add more unexpected fields values here ... TBD
 
 
-  @locations @locations-two-fields-values
+  @locations-two-fields-values
   Scenario: two fields values
 
   Specifying two fields should return data for those fields values only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get two fields values
+    When request_get
     # when we ask for data for two fields values ...
     """
     locations/v0.jsonld?names=Lillehammer&fields=geometry,name
     """
 
-    Then response_jsonSubset_200 two fields values
+    Then response_jsonSubset_200
     # ... the response should contain data for those fields ...
     """
 {
@@ -85,7 +87,7 @@ Feature: locations/
 
     # ... but no data for any other fields values (warning: only a subset of the other fields values are checked, so the test is not 100% robust!)
 
-    And response_notJsonSubset_200 two fields values
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -100,19 +102,19 @@ Feature: locations/
     # could add more unexpected fields values here ... TBD
 
 
-  @locations @locations-unsupported-fields-value
+  @locations-unsupported-fields-value
   Scenario: unsupported fields value
 
   Specifying an unsupported fields value should result in 400/BadRequest
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get unsupported fields value
+    When request_get
     """
     locations/v0.jsonld?names=Lillehammer&fields=foobar
     """
 
-    Then response_jsonSubset_400 unsupported fields value
+    Then response_jsonSubset_400
     """
 {
   "error" : {

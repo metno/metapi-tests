@@ -35,14 +35,14 @@ import stepdefs.Util._
 
 class GenericRequestResponse extends ScalaDsl with EN with Matchers {
 
-  When("""^request_get (.+)$""") { (testName: String, request: String) =>
-    RequestTester.exec(testName, request)
+  When("""^request_get$""") { (request: String) =>
+    RequestTester.exec(request)
   }
 
-  Then("""^response_([^_].+)_(\d+) (.+)$""") { (testType: String, expStatusCode:Int, testName: String, expBody: String) =>
+  Then("""^response_([^_].+)_(\d+)$""") { (testType: String, expStatusCode:Int, expBody: String) =>
 //    JsonUtil.test()
     Try(Await.result(futureResponse, timeout)) match {
-      case Success(response) => ResponseTester.exec(testName, testType, expStatusCode, expBody, response)
+      case Success(response) => ResponseTester.exec(testType, expStatusCode, expBody, response)
       case Failure(error) => throw error
     }
   }

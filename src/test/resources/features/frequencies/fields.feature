@@ -1,19 +1,21 @@
-Feature: frequencies/rainfallIDFs/
+@frequencies @frequencies-rainfallidfs-fields
+Feature: frequencies/rainfallIDFs/?fields
+  Acceptance tests for the query string field 'fields'.
 
 
-  @frequencies @frequencies-rainfallidfs-single-field
-  Scenario: single field
+  @frequencies-rainfallidfs-one-fields-value
+  Scenario: one fields value
 
-    Specifying a single field should return a result containing that field and none of the other (specifiable) fields.
+    Specifying a single fields value should return data for that fields value only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get single field
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?fields=unit
     """
 
-    Then response_jsonSubset_200 single field
+    Then response_jsonSubset_200
     """
 {
   "data" :
@@ -25,7 +27,7 @@ Feature: frequencies/rainfallIDFs/
 }
     """
 
-    And response_notJsonSubset_200 single field
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -37,7 +39,7 @@ Feature: frequencies/rainfallIDFs/
 }
     """
 
-  And response_notJsonSubset_200 single field
+  And response_notJsonSubset_200
     """
 {
   "data" :
@@ -50,19 +52,19 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-2
-  Scenario: multiple fields 2
+  @frequencies-rainfallidfs-multiple-fields-values-2
+  Scenario: multiple fields values 2
 
-    Specifying two fields should return a result containing those fields and none of the other (specifiable) fields.
+    Specifying two fields values should return data for those fields values only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get multiple fields 2
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?fields=unit,operatingPeriods
     """
 
-    Then response_jsonSubset_200 multiple fields 2
+    Then response_jsonSubset_200
     """
 {
   "data" :
@@ -75,7 +77,7 @@ Feature: frequencies/rainfallIDFs/
 }
     """
 
-    And response_notJsonSubset_200 multiple fields 2
+    And response_notJsonSubset_200
     """
 {
   "data" :
@@ -88,19 +90,19 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-all
-  Scenario: multiple fields all
+  @frequencies-rainfallidfs-multiple-fields-values-all
+  Scenario: multiple fields values all
 
-    Specifying all fields should return a result containing those fields.
+    Specifying all fields values should return data for those fields values.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get multiple fields all
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?fields=unit,operatingPeriods,numberOfSeasons
     """
 
-    Then response_jsonSubset_200 multiple fields all
+    Then response_jsonSubset_200
     """
 {
   "data" :
@@ -115,19 +117,19 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-fields-all-permuted
-  Scenario: multiple fields all permuted
+  @frequencies-rainfallidfs-multiple-fields-values-all-permuted
+  Scenario: multiple fields values all permuted
 
-    Specifying all fields in a different order should still return a result containing those fields.
+    Specifying all fields values in a different order should still return data for those fields values.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get multiple fields all permuted
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?fields=operatingPeriods,unit,numberOfSeasons
     """
 
-    Then response_jsonSubset_200 multiple fields all permuted
+    Then response_jsonSubset_200
     """
 {
   "data" :

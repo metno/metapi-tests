@@ -1,20 +1,22 @@
-Feature: locations/
+@locations @locations-names
+Feature: locations/?names
+  Acceptance tests for the query string field 'names'.
 
 
-  @locations @locations-one-name
+  @locations-one-name
   Scenario: one location name
 
     Specifying one location name should return data for that name only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get one name
+    When request_get
     # when we ask for data for one location name ...
     """
     locations/v0.jsonld?names=Lillehammer
     """
 
-    Then response_jsonSubset_200 one name
+    Then response_jsonSubset_200
     # ... the response should contain data for that name ...
     """
 {
@@ -27,7 +29,7 @@ Feature: locations/
 }
     """
 
-    And response_notJsonSubset_200 one name
+    And response_notJsonSubset_200
     # ... but no data for any other name (see http://stackoverflow.com/questions/406230/regular-expression-to-match-line-that-doesnt-contain-a-word )
     """
 {
@@ -41,20 +43,20 @@ Feature: locations/
     """
 
 
-  @locations @locations-two-names
+  @locations-two-names
   Scenario: two location names
 
   Specifying two location names should return data for those names only.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get two names
+    When request_get
     # when we ask for data for two location names ...
     """
     locations/v0.jsonld?names=Lillehammer,Hamar
     """
 
-    Then response_jsonSubset_200 two names
+    Then response_jsonSubset_200
     # ... the response should contain data for those names ...
     """
 {
@@ -67,7 +69,7 @@ Feature: locations/
 }
     """
 
-    And response_jsonSubset_200 two names
+    And response_jsonSubset_200
     """
 {
   "data" :
@@ -79,7 +81,7 @@ Feature: locations/
 }
     """
 
-    And response_notJsonSubset_200 two names
+    And response_notJsonSubset_200
     # ... but no data for any other name than those two (see http://stackoverflow.com/questions/406230/regular-expression-to-match-line-that-doesnt-contain-a-word#comment51775736_23583655 )
     """
 {
@@ -93,19 +95,19 @@ Feature: locations/
     """
 
 
-  @locations @locations-non-existent-name
+  @locations-non-existent-name
   Scenario: non-existent name
 
   Specifying a non-existent location name should return status=404
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get non-existent name
+    When request_get
     """
     locations/v0.jsonld?names=foobar
     """
 
-    Then response_jsonSubset_404 non-existent name
+    Then response_jsonSubset_404
     """
 {
   "@type" : "ErrorResponse",

@@ -1,17 +1,19 @@
-Feature: sources/
+@sources @sources-types
+Feature: sources/?types
+  Acceptance tests for the query string field 'types'.
 
 
-  @sources @sources-supported-type
+  @sources-supported-type
   Scenario: supported type
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get supported type
+    When request_get
     """
     sources/v0.jsonld?ids=SN18700&types=SensorPlatform
     """
 
-    Then response_jsonSubset_200 supported type
+    Then response_jsonSubset_200
     """
 {
   "@type" : "SourceResponse",
@@ -24,17 +26,17 @@ Feature: sources/
     """
 
 # Uncomment the following test once we have implemented T2887
-#  @sources @sources-unsupported-type
+#  @sources-unsupported-type
 #  Scenario: unsupported type
 
-#    Given n/a
+#    Given a valid public MET API client ID
 
-#    When request_get unsupported type
+#    When request_get
 #    """
 #    sources/v0.jsonld?ids=SN18700&types=foobar
 #    """
 
-#    Then response_jsonSubset_400 unsupported type
+#    Then response_jsonSubset_400
 #    """
 #{
 #  "@type" : "ErrorResponse",

@@ -1,16 +1,19 @@
-  Feature: Generic HTTP request/response testing - example 1
+@genericrequest-example1
+Feature: Generic HTTP request/response testing - example 1
 
-  @genericrequest @testName1
-  Scenario: scenarioName1
+  @genericrequest-example1-scenario1
+  Scenario: scenario 1
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get request test #1
+    When request_get
+    # request test #1
     """
     elements/v0.jsonld?lang=en-US&legacyElemCodes=TAN
     """
 
-    Then response_jsonSubset_200 response test #1
+    Then response_jsonSubset_200
+    # response test #1
     """
 {
   "@context" : "https://data.met.no/schema",

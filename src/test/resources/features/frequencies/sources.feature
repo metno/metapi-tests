@@ -1,19 +1,21 @@
-Feature: frequencies/rainfallIDFs/
+@frequencies @frequencies-rainfallidfs-sources
+Feature: frequencies/rainfallIDFs/?sources
+  Acceptance tests for the query string field 'sources'.
 
 
-  @frequencies @frequencies-rainfallidfs-single-source
-  Scenario: single source
+  @frequencies-rainfallidfs-one-source
+  Scenario: one source
 
-    Specifying a single source should return a result for that source.
+    Specifying a single source should return data for that source.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get single source
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?sources=SN18701
     """
 
-      Then response_jsonSubset_200 single source
+      Then response_jsonSubset_200
     """
 {
   "data" :
@@ -26,19 +28,19 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-sources
+  @frequencies-rainfallidfs-multiple-sources
   Scenario: multiple sources part 1:2
 
-    Specifying two sources should return a result for those sources, and the result should be sorted on the source ID.
+    Specifying two sources should return data for those sources, and the result should be sorted on the source ID.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get multiple sources part 1:2
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?sources=SN18701,SN18920
     """
 
-    Then response_jsonSubset_200 multiple sources part 1:2
+    Then response_jsonSubset_200
     """
 {
   "data" :
@@ -54,19 +56,19 @@ Feature: frequencies/rainfallIDFs/
     """
 
 
-  @frequencies @frequencies-rainfallidfs-multiple-sources
+  @frequencies-rainfallidfs-multiple-sources
   Scenario: multiple sources part 2:2
 
     Check that the result is still sorted on source ID even if the order is changed in the query string.
 
-    Given n/a
+    Given a valid public MET API client ID
 
-    When request_get multiple sources part 2:2
+    When request_get
     """
     frequencies/rainfallIDFs/v0.jsonld?sources=SN18920,SN18701
     """
 
-    Then response_jsonSubset_200 multiple sources part 2:2
+    Then response_jsonSubset_200
     """
 {
   "data" :

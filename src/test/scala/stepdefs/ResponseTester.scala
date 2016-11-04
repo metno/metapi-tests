@@ -34,10 +34,10 @@ import scala.util.{Failure, Success, Try}
 
 object ResponseTester extends cucumber.api.scala.ScalaDsl with Matchers {
 
-  def exec(testName: String, testType: String, expStatusCode: Int, expBody: String, response: WSResponse): Unit = {
+  def exec(testType: String, expStatusCode: Int, expBody: String, response: WSResponse): Unit = {
 
     // check status code
-    assertResult(expStatusCode, s"(status code mismatch; test name: $testName)") {
+    assertResult(expStatusCode, s"(status code mismatch)") {
       response.status
     }
 

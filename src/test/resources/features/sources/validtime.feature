@@ -1,21 +1,22 @@
-Feature: sources/
-
+@sources @sources-validtime
+Feature: sources/?validtime
+  Acceptance tests for the query string field 'validtime'.
 
 # TBD: Add tests for supported validtime as well!
 
 
-# Uncomment the following test once we have implemented T2890
-#  @sources @sources-unsupported-validtime
+# Uncomment the following test once we have implemented T2891
+#  @sources-unsupported-validtime
 #  Scenario: unsupported validtime
 
-#    Given n/a
+#    Given a valid public MET API client ID
 
-#    When request_get unsupported validtime
+#    When request_get
 #    """
 #    sources/v0.jsonld?validtime=foobar
 #    """
 
-#    Then response_jsonSubset_400 unsupported validtime
+#    Then response_jsonSubset_400
 #    """
 #{
 #  "@type" : "ErrorResponse",

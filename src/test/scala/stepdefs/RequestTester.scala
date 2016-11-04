@@ -32,7 +32,7 @@ import stepdefs.Util.{futureResponse, metapiBase, requestPrefix, clientId}
 
 object RequestTester extends cucumber.api.scala.ScalaDsl {
 
-  def exec(testName: String, request: String): Unit = {
+  def exec(request: String): Unit = {
     val url = metapiBase + "/" + request.stripPrefix(requestPrefix)
     futureResponse = clientId match {
       case cid if cid.isEmpty => NingWSClient().url(url).get()

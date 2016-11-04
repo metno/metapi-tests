@@ -1,9 +1,9 @@
-@locations @locations-overall
-Feature: locations/
+@frequencies @frequencies-rainfallidfs-availablesources-overall
+Feature: frequencies/rainfallIDFs/availableSources/
   Overall acceptance tests.
 
 
-  @locations-empty-request
+  @frequencies-rainfallidfs-availablesources-empty-request
   Scenario: empty request
 
     An empty query string should return a reasonable result.
@@ -12,15 +12,15 @@ Feature: locations/
 
     When request_get
     """
-    locations/v0.jsonld
+    frequencies/rainfallIDFs/availableSources/v0.jsonld
     """
 
     Then response_jsonSubset_200
     """
 {
-  "@context" : ".+",
-  "@type" : "LocationResponse",
-  "apiVersion" : ".+",
+  "@context" : "https://data.met.no/schema",
+  "@type" : "RainfallIDFSourcesResponse",
+  "apiVersion" : "v0",
   "license" : ".+",
   "createdAt" : ".+",
   "queryTime" : ".+",
@@ -29,26 +29,27 @@ Feature: locations/
   "offset" : "\\d+",
   "totalItemCount" : "\\d+",
   "currentLink" : ".+",
-  "data" : [ {
-    "name" : ".+",
-    "feature" : ".+",
-    "geometry" : {
-      "@type" : ".+",
-      "coordinates" : [ ".+", ".+" ]
+  "data" :
+  [
+    {
+      "sourceId" : "SN\\d+",
+      "validFrom" : ".+",
+      "validTo" : ".+",
+      "numberOfSeasons" : "\\d+"
     }
-  } ]
+  ]
 }
     """
 
 
-  @locations-unsupported-field
+  @frequencies-rainfallidfs-availablesources-unsupported-field
   Scenario: unsupported field
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    locations/v0.jsonld?foo=bar
+    frequencies/rainfallIDFs/availableSources/v0.jsonld?foo=bar
     """
 
     Then response_jsonSubset_400
@@ -58,7 +59,7 @@ Feature: locations/
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: names, geometry, fields"
+    "help" : "Supported fields: sources, fields"
   }
 }
     """

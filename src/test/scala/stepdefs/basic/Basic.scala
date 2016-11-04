@@ -110,7 +110,7 @@ class Basic extends ScalaDsl with EN with Matchers {
               }
             }
           """
-        ResponseTester.exec("missing_authentication_token", "jsonSubset", Status.UNAUTHORIZED, expBody, response)
+        ResponseTester.exec("jsonSubset", Status.UNAUTHORIZED, expBody, response)
       case Failure(error) =>
         throw error
     }
