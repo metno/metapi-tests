@@ -94,12 +94,14 @@ This is supported by allowing the following format for the _When_ and _Then_ ste
   Scenario <test name>
     Given n/a
 
-    When request_get <test name>
+    When request_get
+    # <optional comment> 
     """
     < the part of the URI that comes after METAPIBASE/ >
     """
 
-    Then response_<test type>_<expected status code> <test name>
+    Then response_<test type>_<expected status code>
+    # <optional comment> 
     """
     <expected response body (JSON subset)>
     """
@@ -123,7 +125,7 @@ Array items must also occur in the same order.
 * The `statusOnly` test is for cases where we only care about the status code (and not the response body).
 **Note:** You still need to specify the docstring below the first line of the step even if it is ignored in this case:
 ```
-    Then response_statusOnly_400 test 1
+    Then response_statusOnly_400
     """
     n/a
     """
@@ -138,12 +140,12 @@ The following example shows how to verify that the response body contains a cert
 
     When ...
 
-    Then response_jsonSubset_200 test 1
+    Then response_jsonSubset_200
     """
     <JSON subset that must occur in the response body>
     """
 
-    And response_notJsonSubset_200 test 1
+    And response_notJsonSubset_200
     """
     <JSON subset that must NOT occur in the response body>
     """
@@ -152,7 +154,7 @@ The following example shows how to verify that the response body contains a cert
 The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped and parentheses must be double escaped. For example:
 
 ```
-      Then response_jsonSubset_200 response test #1
+      Then response_jsonSubset_200
       """
       {
          "foo1": "bar",       ----> matches the string "bar"
