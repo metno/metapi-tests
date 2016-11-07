@@ -29,6 +29,7 @@ import play.api.libs.ws.WSResponse
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
+
 object Util {
   // scalastyle:off null
   var futureResponse: Future[WSResponse] = null
@@ -55,6 +56,9 @@ object Util {
     case util.Failure(ex) => 10000
   }
 
+  val timeout = Duration(timeoutMilliseconds, MILLISECONDS)
+
+
   def formatResponseBody(responseBody: String): String = {
     s"""
 ---BEGIN response body ------------------------------------
@@ -63,5 +67,55 @@ ${responseBody}
 """
   }
 
-  val timeout = Duration(timeoutMilliseconds, MILLISECONDS)
+  // Checks if s1 is contained in s2. Throws an exception if not.
+  def assertContains(s1: String, s2: String): Unit = {
+    val ptn = s1.r
+    if (ptn.findFirstIn(s2) == None) {
+      throw new Exception(s"expression ${ptn} not found in other string")
+    }
+  }
+
+  object TestType extends Enumeration {
+    type TestType = Value
+    val JSONSUBSET, CONTAINMENT = Value
+  }
+
+  def formatComparison(testType: TestType.TestType, s1: String, s2: String, mismatch: Boolean): String = {
+    val maxSize = 1000
+    var s1x = s1.substring(0, Math.min(s1.length, maxSize))
+    if (maxSize < s1.length) { s1x = s1x + "\n[" + (s1.length - maxSize) + " characters omitted]" }
+    var s2x = s2.substring(0, Math.min(s2.length, maxSize))
+    if (maxSize < s2.length) { s2x = s2x + "\n[" + (s2.length - maxSize) + " characters omitted]" }
+
+    val not = if (mismatch) "not " else ""
+
+    var f1: String = ""
+    var f2: String = ""
+    testType match {
+      case TestType.JSONSUBSET => {
+        f1 = "JSON value"
+        f2 = "a subset of"
+      }
+      case TestType.CONTAINMENT => {
+        f1 = "string"
+        f2 = "contained in"
+      }
+    }
+
+    s"""
+---BEGIN ${f1} 1 ------------------------------------
+$s1x
+---END ${f1} 1 --------------------------------------
+
+is ${not}${f2}
+
+---BEGIN ${f1} 2 ------------------------------------
+$s2x
+---END ${f1} 2 --------------------------------------
+"""
+  }
+
+  def formatContainmentComparison(s1: String, s2: String, mismatch: Boolean): String = {
+    formatComparison(TestType.CONTAINMENT, s1, s2, mismatch)
+  }
 }

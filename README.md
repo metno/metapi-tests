@@ -87,7 +87,7 @@ In this case, all occurrences of "frequencies/" in the Gherkin source will be st
 Generic HTTP request/response testing:
 --------------------------------------
 
-In acceptance testing based on Cucumber, it may be useful to be able to decide if only a subset of the JSON body is present in a HTTP response.
+In acceptance testing based on Cucumber, it may be useful to decide if a certain JSON subset or a certain free text is present in a HTTP response.
 This is supported by allowing the following format for the _When_ and _Then_ steps in a scenario:
 
 ```
@@ -103,7 +103,7 @@ This is supported by allowing the following format for the _When_ and _Then_ ste
     Then response_<test type>_<expected status code>
     # <optional comment>
     """
-    <expected response body (JSON subset)>
+    <expected response body (JSON subset or free text)>
     """
 ```
 
@@ -113,7 +113,7 @@ The test fails if any of the following conditions become true:
 
 * Comparison of the expected response body with the actual one fails according to the _test type_.
 
-Currently, `jsonSubset`, `notJsonSubset`, and `statusOnly` are supported for test type:
+Currently, `jsonSubset`, `notJsonSubset`, `contains`, `notContains`, and `statusOnly` are supported for test type:
 
 * The `jsonSubset` test checks if the expected response body (if non-empty) is a JSON subset of the actual response body:
 At any point in the expected JSON structure, the toplevel keys of an _object_ must be a subset of the toplevel keys of the corresponding object in the actual structure.
@@ -121,6 +121,10 @@ For an _array_, the items in the expected structure must be a subset of the item
 Array items must also occur in the same order.
 
 * The `notJsonSubset` test is simply the negation of `jsonSubset`, i.e. it fails iff `jsonSubset` would have passed.
+
+* The `contains` test checks if the expected response body is contained within the actual response body.
+
+* The `notContains` test is simply the negation of `contains`, i.e. it fails iff `contains` would have passed.
 
 * The `statusOnly` test is for cases where we only care about the status code (and not the response body).
 **Note:** You still need to specify the docstring below the first line of the step even if it is ignored in this case:
@@ -151,7 +155,32 @@ The following example shows how to verify that the response body contains a cert
     """
 ```
 
-The expected response body may contain regular expressions for basic (non-collection) values, but backslashes must be escaped and parentheses must be double escaped. For example:
+
+The following example shows how to check that the response body contains a certain free text but not a certain other free text:
+
+```
+  Scenario <test name>
+    Given ...
+
+    When ...
+
+    Then response_contains_200
+    """
+    <free text that must occur in the response body>
+    """
+
+    Then response_notContains_200
+    """
+    <free text that must NOT occur in the response body>
+    """
+```
+
+
+The expected response body may contain regular expressions. In the case of the `jsonSubset` and `notJsonSubset` test types, only non-collection values can be
+regular expressions, i.e. structural characters (`[`, `]`, `{`, `}`, and `,`) are not allowed if they are meant to define structure (of arrays and objects)
+in that particular case.
+
+In the case of the `jsonSubset` and `notJsonSubset` test types, backslashes must be escaped:
 
 ```
       Then response_jsonSubset_200
@@ -160,10 +189,47 @@ The expected response body may contain regular expressions for basic (non-collec
          "foo1": "bar",       ----> matches the string "bar"
          "foo2": "b[0-9]+r",  ----> matches a string beginning with the character 'b' followed by one or more decimal digits, followed by the character 'r'
          "foo3": "b\\d+r",    ----> ditto
-         "foo4": "ba*r",      ----> matches a string beginning with the character 'b' followed by zero or more 'a' characters, followed by the character 'r'
-         "foo5": "ba\\*r",    ----> matches the string "ba*r"
-         "foo6": ".+",        ----> matches one or more characters"
-         "foo7": "ba\\(r\\)"  ----> matches the string "ba(r)"
+         "foo4": "ba[r|z]",   ----> matches the string "bar" or the string "baz"
+         "foo5": "ba*r",      ----> matches a string beginning with the character 'b' followed by zero or more 'a' characters, followed by the character 'r'
+         "foo6": "ba\\*r",    ----> matches the string "ba*r"
+         "foo7": ".+",        ----> matches one or more characters"
+         "foo8": "ba\\(r\\)"  ----> matches the string "ba(r)"
       }
+      """
+```
+
+
+In the case of the `contains` and `notContains` test types, backslashes need not be escaped:
+
+```
+      Then response_contains_200
+      """
+      b\d+r    ----> matches a string beginning with the character 'b' followed by one or more decimal digits, followed by the character 'r'
+      """
+
+      ...
+      """
+      ba\*r    ----> matches the string "ba*r"
+      """
+
+      ...
+      """
+      ba\(r\)  ----> matches the string "ba(r)"
+      """
+
+```
+
+
+This example asserts that the response body (regardless of format!) contains a station mumber (like "SN18700") but not the word "foobar":
+
+```
+      Then response_contains_200
+      """
+      SN\d+
+      """
+
+      And response_notContains_200
+      """
+      foobar
       """
 ```

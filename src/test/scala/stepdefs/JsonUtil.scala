@@ -29,6 +29,7 @@ import play.api.libs.json.{JsArray, JsObject, JsValue, Json}
 
 import scala.collection.Set
 import scala.util.Success
+import Util.{TestType, formatComparison}
 
 
 object JsonUtil {
@@ -130,25 +131,7 @@ object JsonUtil {
   private def isCollection(jsonVal: JsValue): Boolean = { isObject(jsonVal) || isArray(jsonVal) }
 
   def formatSubsetComparison(s1: String, s2: String, mismatch: Boolean): String = {
-    val maxSize = 1000
-    var s1x = s1.substring(0, Math.min(s1.length, maxSize))
-    if (maxSize < s1.length) { s1x = s1x + "\n[" + (s1.length - maxSize) + " characters omitted]" }
-    var s2x = s2.substring(0, Math.min(s2.length, maxSize))
-    if (maxSize < s2.length) { s2x = s2x + "\n[" + (s2.length - maxSize) + " characters omitted]" }
-
-    val not = if (mismatch) "not " else ""
-
-    s"""
----BEGIN JSON value 1 ------------------------------------
-$s1x
----END JSON value 1 --------------------------------------
-
-is ${not}a subset of
-
----BEGIN JSON value 2 ------------------------------------
-$s2x
----END JSON value 2 --------------------------------------
-"""
+    formatComparison(TestType.JSONSUBSET, s1, s2, mismatch)
   }
 
   def formatSubsetComparison(jsonVal1: JsValue, jsonVal2: JsValue, mismatch: Boolean): String = {

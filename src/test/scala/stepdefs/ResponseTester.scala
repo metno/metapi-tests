@@ -29,6 +29,7 @@ import org.scalatest.Matchers
 import play.api.libs.json._
 import play.api.libs.ws.WSResponse
 import stepdefs.JsonUtil.{assertSubsetOf, formatSubsetComparison}
+import stepdefs.Util.{assertContains, formatContainmentComparison}
 import scala.util.{Failure, Success, Try}
 
 
@@ -55,8 +56,28 @@ object ResponseTester extends cucumber.api.scala.ScalaDsl with Matchers {
 
       case "notJsonSubset" => {
         Try(assertSubsetOf(Json.parse(expBody), Json.parse(response.body.toString))) match {
-          case Success(()) => { // propagate
-            throw new Exception("JSON subset match (unexpected))" + JsonUtil.formatSubsetComparison(expBody, response.body.toString, false))
+          case Success(()) => { // propagate with additional info
+            throw new Exception("(JSON subset match (unexpected))" + JsonUtil.formatSubsetComparison(expBody, response.body.toString, false))
+          }
+          case Failure(e) => // expected, so nothing to be done
+        }
+      }
+
+      case "contains" => {
+        Try(assertContains(expBody, response.body.toString)) match {
+          case Failure(e) => { // propagate with additional info
+            throw new Exception(
+              "(string containment failed)" + Util.formatContainmentComparison(expBody, response.body.toString, true) + e.getMessage)
+          }
+          case Success(()) => // nothing to be done
+        }
+      }
+
+      case "notContains" => {
+        Try(assertContains(expBody, response.body.toString)) match {
+          case Success(()) => { // propagate with additional info
+            throw new Exception(
+              "(string containment succeeded (unexpected))" + Util.formatContainmentComparison(expBody, response.body.toString, false))
           }
           case Failure(e) => // expected, so nothing to be done
         }
@@ -64,7 +85,7 @@ object ResponseTester extends cucumber.api.scala.ScalaDsl with Matchers {
 
       case "statusOnly" => // status code already checked above, so we're done
 
-      //case "<TYPE 3>" => ...
+      //case "..." => ...
       // ...
 
       case other => throw new Exception(s"unsupported response test type: $other")
