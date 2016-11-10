@@ -120,7 +120,7 @@ Feature: sources/?ids
 
 
   @sources-non-existent-source
-  Scenario: invalid source
+  Scenario: non-existent source
 
   Specifying a non-existent source should return status=404
 
