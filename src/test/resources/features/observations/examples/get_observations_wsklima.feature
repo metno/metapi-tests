@@ -1,9 +1,9 @@
-@observations @observations-wsklima-examples
+@observations @observations-examples @observations-examples-wsklima
 Feature: Get wsklima example observations
   Use the wsKlima example queries as test cases.
 
 
-  @get_observations_wsklima-example0
+  @observations-examples-wsklima-example0
   Scenario: Example 0
     Given a valid public MET API client ID
 
@@ -26,7 +26,7 @@ Feature: Get wsklima example observations
 # I think the item count here may be incorrect (duplicate element?). Should be double-checked.
 
 
-  @get_observations_wsklima-example1
+  @observations-examples-wsklima-example1
   Scenario: Example 1
     Given a valid public MET API client ID
 
@@ -48,7 +48,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example2
+  @observations-examples-wsklima-example2
   Scenario: Example 2
     Given a valid public MET API client ID
 
@@ -70,7 +70,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example3
+  @observations-examples-wsklima-example3
   Scenario: Example 3 (Note - not the same as normals - will need revision)
     Given a valid public MET API client ID
 
@@ -91,7 +91,7 @@ Feature: Get wsklima example observations
 }
     """
 
-#  @get_observations_wsklima-example4
+#  @observations-examples-wsklima-example4
 #  Scenario: Example 4 (Note - not the same as normals - will need revision)
 #    Given a valid public MET API client ID
 #
@@ -113,7 +113,7 @@ Feature: Get wsklima example observations
 #    """
 
 
-  @get_observations_wsklima-example8.1
+  @observations-examples-wsklima-example8.1
   Scenario: Example 8.1
     Given a valid public MET API client ID
 
@@ -135,7 +135,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example8.2
+  @observations-examples-wsklima-example8.2
   Scenario: Example 8.2
     Given a valid public MET API client ID
 
@@ -157,7 +157,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example9
+  @observations-examples-wsklima-example9
   Scenario: Example 9
     Given a valid public MET API client ID
 
@@ -179,7 +179,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example14.1
+  @observations-examples-wsklima-example14.1
   Scenario: Example 14.1
     Given a valid public MET API client ID
 
@@ -201,7 +201,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example14.2
+  @observations-examples-wsklima-example14.2
   Scenario: Example 14.2
     Given a valid public MET API client ID
 
@@ -223,7 +223,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example15.1
+  @observations-examples-wsklima-example15.1
   Scenario: Example 15.1
     Given a valid public MET API client ID
 
@@ -244,7 +244,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example15.2
+  @observations-examples-wsklima-example15.2
   Scenario: Example 15.2
     Given a valid public MET API client ID
 
@@ -266,7 +266,7 @@ Feature: Get wsklima example observations
     """
 
 
-  @get_observations_wsklima-example17
+  @observations-examples-wsklima-example17
   Scenario: Example 17
     Given a valid public MET API client ID
 

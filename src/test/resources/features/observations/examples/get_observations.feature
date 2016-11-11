@@ -1,11 +1,11 @@
-@observations @observations-toplevel
+@observations @observations-examples @observations-examples-toplevel
 Feature: Get observations
   Observations should be returned if they exist.
   The sensor number is assumed to be 0, if not specified. ":all" can be used to retrieve all available sensor numbers.
   Referencetimes should return all data that fits within the time period specified (exclusive/inclusive syntax).
 
 
-  @observations-get-observations-with-valid-parameters
+  @observations-examples-get-observations-with-valid-parameters
   Scenario: Get observations with valid parameters
 
     Given a valid public MET API client ID
@@ -43,7 +43,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-non-existent-source
+  @observations-examples-get-observations-for-non-existent-source
   Scenario: Get observations for non-existent source
 
     Given a valid public MET API client ID
@@ -68,7 +68,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-all-sensors-on-a-station
+  @observations-examples-get-observations-for-all-sensors-on-a-station
   Scenario: Get observations for all sensors on a station
 
     Given a valid public MET API client ID
@@ -90,7 +90,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-sensor-1-on-a-station
+  @observations-examples-get-observations-for-sensor-1-on-a-station
   Scenario: Get observations for sensor 1 on a station
 
     Given a valid public MET API client ID
@@ -112,7 +112,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-non-existent-referencetime
+  @observations-examples-get-observations-for-non-existent-referencetime
   Scenario: Get observations for non-existent referencetime
 
     Given a valid public MET API client ID
@@ -137,7 +137,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-inside
+  @observations-examples-get-observations-for-a-referencetime-period-inside
   Scenario: Get observations for a referencetime period (inside)
 
     Given a valid public MET API client ID
@@ -157,7 +157,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-overlap-lower
+  @observations-examples-get-observations-for-a-referencetime-period-overlap-lower
   Scenario: Get observations for a referencetime period (overlap lower)
 
     Given a valid public MET API client ID
@@ -177,7 +177,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-overlap-upper
+  @observations-examples-get-observations-for-a-referencetime-period-overlap-upper
   Scenario: Get observations for a referencetime period (overlap upper)
 
     Given a valid public MET API client ID
@@ -197,7 +197,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-overlap-both
+  @observations-examples-get-observations-for-a-referencetime-period-overlap-both
   Scenario: Get observations for a referencetime period (overlap both)
 
     Given a valid public MET API client ID
@@ -217,7 +217,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-exact
+  @observations-examples-get-observations-for-a-referencetime-period-exact
   Scenario: Get observations for a referencetime period (exact)
 
     Given a valid public MET API client ID
@@ -237,7 +237,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-before
+  @observations-examples-get-observations-for-a-referencetime-period-before
   Scenario: Get observations for a referencetime period (before)
 
     Given a valid public MET API client ID
@@ -262,7 +262,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-after
+  @observations-examples-get-observations-for-a-referencetime-period-after
   Scenario: Get observations for a referencetime period (after)
 
     Given a valid public MET API client ID
@@ -287,7 +287,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-a-referencetime-period-using-correct-inclusive-exclusive-syntax
+  @observations-examples-get-observations-for-a-referencetime-period-using-correct-inclusive-exclusive-syntax
   Scenario: Get observations for a referencetime period using correct inclusive-exclusive syntax
 
     Given a valid public MET API client ID
@@ -310,7 +310,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-non-existent-elements
+  @observations-examples-get-observations-for-non-existent-elements
   Scenario: Get observations for non-existent elements
 
     Given a valid public MET API client ID
@@ -335,7 +335,7 @@ Feature: Get observations
     """
 
 
-  @observations-get-observations-for-multiple-elements
+  @observations-examples-get-observations-for-multiple-elements
   Scenario: Get observations for multiple elements
 
     Given a valid public MET API client ID
