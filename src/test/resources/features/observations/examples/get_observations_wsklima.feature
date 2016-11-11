@@ -264,25 +264,3 @@ Feature: Get wsklima example observations
   } ]
 }
     """
-
-
-  @observations-examples-wsklima-example17
-  Scenario: Example 17
-    Given a valid public MET API client ID
-
-    When request_get
-    # I request IVF data for Oslo-Blindern SN18701
-    """
-    frequencies/rainfallIDFs/v0.jsonld?sources=SN18701
-    """
-
-    Then response_jsonSubset_200
-    # get a full set of data
-    """
-{
-  "totalItemCount": 1
-}
-    """
-
-# TBD: Example 17 needs better checks.
-# TBD: Move Example 17 to the acceptance tests for the frequencies module?
