@@ -184,9 +184,9 @@ Feature: elements/?ids-legacyElemcodes-cfStandardNames
 
 
   @elements-non-existent-legacy
-  Scenario: non-existent element ID
+  Scenario: non-existent legacy element code
 
-  Specifying a non-existent element ID should return status=404
+  Specifying a non-existent legacy element code should return status=404
 
     Given a valid public MET API client ID
 
