@@ -1,8 +1,10 @@
 @genericrequest-example1
-Feature: Generic HTTP request/response testing - example 1
+Feature: genericrequest-example1
+
+  # Generic HTTP request/response testing - example 1
 
   @genericrequest-example1-scenario1
-  Scenario: scenario 1
+  Scenario: genericrequest-example1-scenario1
 
     Given a valid public MET API client ID
 

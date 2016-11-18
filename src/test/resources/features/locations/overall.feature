@@ -1,12 +1,12 @@
 @locations @locations-overall
-Feature: locations/
-  Overall acceptance tests.
+Feature: locations-overall
+  # Overall acceptance tests.
 
 
   @locations-empty-request
-  Scenario: empty request
+  Scenario: locations-empty-request
 
-    An empty query string should return a reasonable result.
+    # An empty query string should return a reasonable result.
 
     Given a valid public MET API client ID
 
@@ -42,7 +42,7 @@ Feature: locations/
 
 
   @locations-unsupported-field
-  Scenario: unsupported field
+  Scenario: locations-unsupported-field
 
     Given a valid public MET API client ID
 

@@ -1,12 +1,12 @@
 @elements @elements-fields
-Feature: elements/?fields
-  Acceptance tests for the query string field 'fields'.
+Feature: elements-fields
+  # Acceptance tests for the query string field 'fields'.
 
 
   @elements-one-fields-value
-  Scenario: one fields value
+  Scenario: elements-one-fields-value
 
-    Specifying a single fields value should return data for that fields value only.
+    # Specifying a single fields value should return data for that fields value only.
 
     Given a valid public MET API client ID
 
@@ -59,9 +59,9 @@ Feature: elements/?fields
 
 
   @elements-two-fields-values
-  Scenario: two fields values
+  Scenario: elements-two-fields-values
 
-  Specifying two fields values should return data for those fields values only.
+    # Specifying two fields values should return data for those fields values only.
 
     Given a valid public MET API client ID
 
@@ -102,9 +102,9 @@ Feature: elements/?fields
 
 
   @elements-unsupported-fields-value
-  Scenario: unsupported fields value
+  Scenario: elements-unsupported-fields-value
 
-  Specifying an unsupported fields value should result in 400/BadRequest
+    # Specifying an unsupported fields value should result in 400/BadRequest
 
     Given a valid public MET API client ID
 

@@ -3,8 +3,8 @@
 Play project that uses Cucumber to run acceptance (end-to-end) tests against a stand-alone MET API service.
 
 
-Basic usage:
-------------
+Basic usage
+-----------
 
 Executing the following command:
 
@@ -21,8 +21,8 @@ and a JSON report in
   `target/cucumber-report.json`
 
 
-Test an authenticating server:
-------------------------------
+Test an authenticating server
+-----------------------------
 
 Specify the client ID to test a server with authentication enabled (i.e. where auth.active has not been set to false in application.conf):
 
@@ -35,8 +35,8 @@ Follow instructions on https://staging-data.met.no to get a client ID.
 By default, authentication is skipped.
 
 
-Specify a timeout for the server:
----------------------------------
+Specify a timeout for the server
+--------------------------------
 
 The server timeout can be set like this:
 
@@ -47,8 +47,8 @@ If the server does not respond to an http request within this timeout, the test 
 The default value is 10000 (i.e. 10 secs).
 
 
-Tags:
------
+Tags
+----
 
 By default, all scenarios are run. To run scenarios for certain tags only, set the `CUCUMBER_OPTIONS` environment variable
 like this:
@@ -74,8 +74,16 @@ Here's a quick way to list tags associated with each scenario:
 `find src -name \*.feature | xargs grep @`
 
 
-Test a local server that runs a single module:
-----------------------------------------------
+Scenario names must be unique
+-----------------------------
+
+**Important:** Scenario names (the free text following the `Scenario:` keyword) must be globally unique within the same test run even if they are located in different .feature files and/or under different `Feature:` keywords.
+
+Executing two scenarios with the same name will be considered multiple executions of the same scenario. Cucumber might consider the overall test execution as passed (i.e. the test runner process eventually exiting with status=0) as long as at least one of the multiple executions pass. A test failure might then go undetected.  
+
+
+Test a local server that runs a single module
+---------------------------------------------
 
 To test a local server that runs a single module, such as the _frequencies_ module, we can use a combination of tags and `REQUESTPREFIX` like this:
 
@@ -84,8 +92,8 @@ To test a local server that runs a single module, such as the _frequencies_ modu
 In this case, all occurrences of "frequencies/" in the Gherkin source will be stripped from the URL before the HTTP request is executed.
 
 
-Generic HTTP request/response testing:
---------------------------------------
+Generic HTTP request/response testing
+-------------------------------------
 
 In acceptance testing based on Cucumber, it may be useful to decide if a certain JSON subset or a certain free text is present in a HTTP response.
 This is supported by allowing the following format for the _When_ and _Then_ steps in a scenario:

@@ -1,8 +1,8 @@
 @toplevel
-Feature: Get toplevel page
+Feature: toplevel
 
-  @get_toplevel_page
-  Scenario: Get toplevel page
+  @get-toplevel-page
+  Scenario: get-toplevel-page
 
     Given a valid public MET API client ID
 

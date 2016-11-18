@@ -1,10 +1,10 @@
-@observations @frequencies-examples @frequencies-examples-wsklima
-Feature: Get wsklima example frequencies
-  Use the wsKlima example queries as test cases.
+@frequencies @frequencies-examples @frequencies-examples-wsklima
+Feature: frequencies-examples-wsklima
+  # Use wsKlima example queries as test cases.
 
 
   @frequencies-examples-wsklima-example1
-  Scenario: Example 1
+  Scenario: frequencies-examples-wsklima-example1
     Given a valid public MET API client ID
 
     When request_get

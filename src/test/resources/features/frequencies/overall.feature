@@ -1,12 +1,12 @@
 @frequencies @frequencies-rainfallidfs-overall
-Feature: frequencies/rainfallIDFs/
-  Overall acceptance tests.
+Feature: frequencies-rainfallidfs-overall
+  # Overall acceptance tests.
 
 
   @frequencies-rainfallidfs-empty-request
-  Scenario: empty request
+  Scenario: frequencies-rainfallidfs-empty-request
 
-    An empty query string should return a reasonable result.
+    # An empty query string should return a reasonable result.
 
     Given a valid public MET API client ID
 
@@ -51,7 +51,7 @@ Feature: frequencies/rainfallIDFs/
 
 
   @frequencies-rainfallidfs-unsupported-field
-  Scenario: unsupported field
+  Scenario: frequencies-rainfallidfs-unsupported-field
 
     Given a valid public MET API client ID
 

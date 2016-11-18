@@ -1,11 +1,12 @@
 @sources @sources-ids
-Feature: sources/?ids
-  Acceptance tests for the query string field 'ids'.
+Feature: sources-ids
+  # Acceptance tests for the query string field 'ids'.
+
 
   @sources-one-id
-  Scenario: one source ID
+  Scenario: sources-one-id
 
-    Specifying a single source ID should return data for that ID only.
+    # Specifying a single source ID should return data for that ID only.
 
     Given a valid public MET API client ID
 
@@ -43,9 +44,9 @@ Feature: sources/?ids
 
 
   @sources-two-ids
-  Scenario: two source IDs
+  Scenario: sources-two-ids
 
-  Specifying two source IDs should return data for those IDs only.
+    # Specifying two source IDs should return data for those IDs only.
 
     Given a valid public MET API client ID
 
@@ -95,9 +96,9 @@ Feature: sources/?ids
 
 
   @sources-invalid-source
-  Scenario: invalid source
+  Scenario: sources-invalid-source
 
-  Specifying an invalid source should return status=400
+    # Specifying an invalid source should return status=400
 
     Given a valid public MET API client ID
 
@@ -120,9 +121,9 @@ Feature: sources/?ids
 
 
   @sources-non-existent-source
-  Scenario: non-existent source
+  Scenario: sources-non-existent-source
 
-  Specifying a non-existent source should return status=404
+    # Specifying a non-existent source should return status=404
 
     Given a valid public MET API client ID
 

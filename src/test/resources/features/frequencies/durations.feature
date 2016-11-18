@@ -1,17 +1,17 @@
 @frequencies @frequencies-rainfallidfs-durations
-Feature: frequencies/rainfallIDFs/?durations
-  Acceptance tests for the query string field 'durations'.
+Feature: frequencies-rainfallidfs-durations
+  # Acceptance tests for the query string field 'durations'.
 
 
   @frequencies-rainfallidfs-one-duration
-  Scenario: one duration
+  Scenario: frequencies-rainfallidfs-one-duration
 
-    Specifying a single duration should return data for that duration only.
+    # Specifying a single duration should return data for that duration only.
 
-    (NOTE: For now, the test is not 100% robust, since we only ensure that two of the other durations are not present (15 and 30,
-    i.e. the durations on each side of the target duration 20).
-    Ideally, we should check all supported durations (1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120,180, 360,720, 1440),
-    but currently there are no consise ways of expressing such a test (in a loop, for example).)
+    # (NOTE: For now, the test is not 100% robust, since we only ensure that two of the other durations are not present (15 and 30,
+    # i.e. the durations on each side of the target duration 20).
+    # Ideally, we should check all supported durations (1, 2, 3, 5, 10, 15, 20, 30, 45, 60, 90, 120,180, 360,720, 1440),
+    # but currently there are no consise ways of expressing such a test (in a loop, for example).)
 
     Given a valid public MET API client ID
 
@@ -73,11 +73,11 @@ Feature: frequencies/rainfallIDFs/?durations
 
 
   @frequencies-rainfallidfs-two-durations
-  Scenario: two durations
+  Scenario: frequencies-rainfallidfs-two-durations
 
-  Specifying two durations should return a result containing those durations only.
+    # Specifying two durations should return a result containing those durations only.
 
-  (see comment in Scenario one duration)
+    # (see comment in Scenario frequencies-rainfallidfs-one-duration)
 
     Given a valid public MET API client ID
 
@@ -142,9 +142,9 @@ Feature: frequencies/rainfallIDFs/?durations
 
 
   @frequencies-rainfallidfs-malformed-durations
-  Scenario: malformed durations
+  Scenario: frequencies-rainfallidfs-malformed-durations
 
-  Specifying a malformed durations parameter should return a result with status code 400.
+    # Specifying a malformed durations parameter should return a result with status code 400.
 
     Given a valid public MET API client ID
 
@@ -166,9 +166,9 @@ Feature: frequencies/rainfallIDFs/?durations
 
 
   @frequencies-rainfallidfs-unsupported-durations
-  Scenario: unsupported durations
+  Scenario: frequencies-rainfallidfs-unsupported-durations
 
-  Specifying one or more unsupported durations should return a result with status code 400.
+    # Specifying one or more unsupported durations should return a result with status code 400.
 
     Given a valid public MET API client ID
 

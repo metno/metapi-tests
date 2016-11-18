@@ -1,15 +1,17 @@
 @frequencies @frequencies-rainfallidfs-unit
-Feature: frequencies/rainfallIDFs/?unit
-  Acceptance tests for the query string field 'unit'.
+Feature: frequencies-rainfallidfs-unit
+  # Acceptance tests for the query string field 'unit'.
 
   # --- BEGIN test 1 -----------------------------------------------------------------------------------------------------
   # Requesting intensity values in litres-per-second-per-hectar (the default) must correspond correctly with
   # requesting them in millilitres-per-minute.
   #
-  # WARNING: The test must be updated if the values in the database change!
+  # WARNING: The test must be updated if database values change!
 
   @frequencies-rainfallidfs-unit-conversion-lsh-1
-  Scenario: unit conversion part 1.1: litres per second per hectar (default value)
+  Scenario: frequencies-rainfallidfs-unit-conversion-lsh-1
+
+    # unit conversion part 1.1: litres per second per hectar (default value)
 
     Given a valid public MET API client ID
 
@@ -36,7 +38,9 @@ Feature: frequencies/rainfallIDFs/?unit
     """
 
   @frequencies-rainfallidfs-unit-conversion-lsh-2
-  Scenario: unit conversion part 1.2: litres per second per hectar (explicitly specifying unit)
+  Scenario: frequencies-rainfallidfs-unit-conversion-lsh-2
+
+    # unit conversion part 1.2: litres per second per hectar (explicitly specifying unit)
 
     Given a valid public MET API client ID
 
@@ -63,7 +67,9 @@ Feature: frequencies/rainfallIDFs/?unit
     """
 
   @frequencies-rainfallidfs-unit-conversion-mmm
-  Scenario: unit conversion part 2: millimetres per minute
+  Scenario: frequencies-rainfallidfs-unit-conversion-mmm
+
+    # unit conversion part 2: millimetres per minute
 
     # Expected formula:
     #   l/s*Ha = lsh = litres per second per hectar

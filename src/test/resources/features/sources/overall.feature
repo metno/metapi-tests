@@ -1,12 +1,12 @@
 @sources @sources-overall
-Feature: sources/
-  Overall acceptance tests.
+Feature: sources-overall
+  # Overall acceptance tests.
 
 
   @sources-empty-request
-  Scenario: empty request
+  Scenario: sources-empty-request
 
-    An empty query string should return a reasonable result.
+    # An empty query string should return a reasonable result.
 
     Given a valid public MET API client ID
 
@@ -57,7 +57,7 @@ Feature: sources/
 
 
   @sources-unsupported-field
-  Scenario: unsupported field
+  Scenario: sources-unsupported-field
 
     Given a valid public MET API client ID
 

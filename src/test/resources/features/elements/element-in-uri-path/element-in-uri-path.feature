@@ -1,11 +1,11 @@
 @elements @elements-element-in-uri-path
-Feature: elements/<ID>
-  Acceptance tests for a single element specified in the URI path.
+Feature: elements-element-in-uri-path
+  # Acceptance tests for a single element specified in the URI path.
 
   @elements-element-in-uri-path-existent
-  Scenario: element ID in URI path
+  Scenario: elements-element-in-uri-path-existent
 
-    Specifying a single element ID in the URI path should return data for that ID only.
+    # Specifying a single element ID in the URI path should return data for that ID only.
 
     Given a valid public MET API client ID
 
@@ -43,9 +43,9 @@ Feature: elements/<ID>
 
 
   @elements-element-in-uri-path-non-existent
-  Scenario: non-existent element ID in URI path
+  Scenario: elements-element-in-uri-path-non-existent
 
-  Specifying a non-existent element ID in the URI path should return status=404
+    # Specifying a non-existent element ID in the URI path should return status=404
 
     Given a valid public MET API client ID
 

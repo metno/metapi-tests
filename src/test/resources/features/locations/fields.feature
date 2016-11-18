@@ -1,12 +1,12 @@
 @locations @locations-fields
-Feature: locations/?fields
-  Acceptance tests for the query string field 'fields'.
+Feature: locations-fields
+  # Acceptance tests for the query string field 'fields'.
 
 
   @locations-one-fields-value
-  Scenario: one fields value
+  Scenario: locations-one-fields-value
 
-    Specifying a single fields value should return data for that fields value only.
+    # Specifying a single fields value should return data for that fields value only.
 
     Given a valid public MET API client ID
 
@@ -59,9 +59,9 @@ Feature: locations/?fields
 
 
   @locations-two-fields-values
-  Scenario: two fields values
+  Scenario: locations-two-fields-values
 
-  Specifying two fields should return data for those fields values only.
+    # Specifying two fields should return data for those fields values only.
 
     Given a valid public MET API client ID
 
@@ -103,9 +103,9 @@ Feature: locations/?fields
 
 
   @locations-unsupported-fields-value
-  Scenario: unsupported fields value
+  Scenario: locations-unsupported-fields-value
 
-  Specifying an unsupported fields value should result in 400/BadRequest
+    # Specifying an unsupported fields value should result in 400/BadRequest
 
     Given a valid public MET API client ID
 

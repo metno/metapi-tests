@@ -1,10 +1,10 @@
 @locations @locations-geometry
-Feature: locations/?geometry
-  Acceptance tests for the query string field 'geometry'.
+Feature: locations-geometry
+  # Acceptance tests for the query string field 'geometry'.
 
 
   @locations-unsupported-geometry
-  Scenario: unsupported geometry
+  Scenario: locations-unsupported-geometry
 
     Given a valid public MET API client ID
 

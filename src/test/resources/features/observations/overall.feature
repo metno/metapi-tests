@@ -1,12 +1,12 @@
 @observations @observations-overall
-Feature: observations/
-  Overall acceptance tests.
+Feature: observations-overall
+  # Overall acceptance tests.
 
 
   @observations-empty-request
-  Scenario: empty request
+  Scenario: observations-empty-request
 
-    An empty query string should return 400/BadRequest since the mandatory query string field 'sources' is missing.
+    # An empty query string should return 400/BadRequest since the mandatory query string field 'sources' is missing.
 
     Given a valid public MET API client ID
 
@@ -29,7 +29,7 @@ Feature: observations/
 
 
   @observations-unsupported-field
-  Scenario: unsupported field
+  Scenario: observations-unsupported-field
 
     Given a valid public MET API client ID
 

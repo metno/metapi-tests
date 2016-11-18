@@ -1,12 +1,12 @@
 @elements @elements-overall
-Feature: elements/
-  Overall acceptance tests.
+Feature: elements-overall
+  # Overall acceptance tests.
 
 
   @elements-empty-request
-  Scenario: empty request
+  Scenario: elements-empty-request
 
-    An empty query string should return a reasonable result.
+    # An empty query string should return a reasonable result.
 
     Given a valid public MET API client ID
 
@@ -53,7 +53,7 @@ Feature: elements/
 
 
   @elements-unsupported-field
-  Scenario: unsupported field
+  Scenario: elements-unsupported-field
 
     Given a valid public MET API client ID
 

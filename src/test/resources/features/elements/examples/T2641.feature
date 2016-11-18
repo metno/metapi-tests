@@ -1,11 +1,11 @@
 @elements @elements-examples-T2641
-Feature: elements - examples - T2641
+Feature: elements-examples-T2641
   # Examples specified in Phabricator task T2641.
 
   # Note: Example 1 is already covered in the scenario with tag `@elements-non-existent-legacy` (file `id-legacy-cf.feature`)).
 
   @elements-examples-T2641-example2
-  Scenario: T2641, Example 2
+  Scenario: elements-examples-T2641-example2
 
     Given a valid public MET API client ID
 
@@ -89,7 +89,7 @@ Feature: elements - examples - T2641
 
 
   @elements-examples-T2641-example3
-  Scenario: T2641, Example 3
+  Scenario: elements-examples-T2641-example3
 
     Given a valid public MET API client ID
 

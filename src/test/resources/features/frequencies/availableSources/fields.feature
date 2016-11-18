@@ -1,12 +1,12 @@
 @frequencies @frequencies-rainfallidfs-availablesources-fields
-Feature: frequencies/rainfallIDFs/availableSources/?fields
-  Acceptance tests for the query string field 'fields'.
+Feature: frequencies-rainfallidfs-availablesources-fields
+  # Acceptance tests for the query string field 'fields'.
 
 
   @frequencies-rainfallidfs-availablesources-one-fields-value
-  Scenario: one fields value
+  Scenario: frequencies-rainfallidfs-availablesources-one-fields-value
 
-    Specifying a single fields value should return data for that fields value only.
+    # Specifying a single fields value should return data for that fields value only.
 
     Given a valid public MET API client ID
 
@@ -54,9 +54,9 @@ Feature: frequencies/rainfallIDFs/availableSources/?fields
 
 
   @frequencies-rainfallidfs-availablesources-multiple-fields-values-2
-  Scenario: multiple fields values 2
+  Scenario: frequencies-rainfallidfs-availablesources-multiple-fields-values-2
 
-    Specifying two fields values should return data for those fields values only.
+    # Specifying two fields values should return data for those fields values only.
 
     Given a valid public MET API client ID
 
@@ -93,9 +93,9 @@ Feature: frequencies/rainfallIDFs/availableSources/?fields
 
 
   @frequencies-rainfallidfs-availablesources-multiple-fields-values-all
-  Scenario: multiple fields values all
+  Scenario: frequencies-rainfallidfs-availablesources-multiple-fields-values-all
 
-    Specifying all fields values should return data for those fields values.
+    # Specifying all fields values should return data for those fields values.
 
     Given a valid public MET API client ID
 
@@ -121,7 +121,7 @@ Feature: frequencies/rainfallIDFs/availableSources/?fields
 
 
   @frequencies-rainfallidfs-availablesources-multiple-fields-values-all-permuted
-  Scenario: multiple fields values all permuted
+  Scenario: frequencies-rainfallidfs-availablesources-multiple-fields-values-all-permuted
 
     Specifying all fields values in a different order should still return data for those fields values.
 

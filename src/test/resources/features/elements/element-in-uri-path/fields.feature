@@ -1,12 +1,12 @@
 @elements @elements-element-in-uri-path-fields
-Feature: elements/<ID>/?fields
-  Acceptance tests for the query string field 'fields' for a single element specified in the URI path.
+Feature: elements-element-in-uri-path-fields
+  # Acceptance tests for the query string field 'fields' for a single element specified in the URI path.
 
 
   @elements-element-in-uri-path-one-fields-value
-  Scenario: one fields value for element in URI path
+  Scenario: elements-element-in-uri-path-one-fields-value
 
-    Specifying a single fields value should return data for that fields value only.
+    # Specifying a single fields value should return data for that fields value only.
 
     Given a valid public MET API client ID
 
@@ -59,9 +59,9 @@ Feature: elements/<ID>/?fields
 
 
   @elements-element-in-uri-path-two-fields-values
-  Scenario: two fields values for element in URI path
+  Scenario: elements-element-in-uri-path-two-fields-values
 
-  Specifying two fields values should return data for those fields values only.
+    # Specifying two fields values should return data for those fields values only.
 
     Given a valid public MET API client ID
 
@@ -102,9 +102,9 @@ Feature: elements/<ID>/?fields
 
 
   @elements-element-in-uri-path-unsupported-fields-value
-  Scenario: unsupported fields value for element in URI path
+  Scenario: elements-element-in-uri-path-unsupported-fields-value
 
-  Specifying an unsupported fields value should result in 400/BadRequest
+    # Specifying an unsupported fields value should result in 400/BadRequest
 
     Given a valid public MET API client ID
 

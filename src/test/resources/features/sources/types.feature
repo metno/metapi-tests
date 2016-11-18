@@ -1,10 +1,10 @@
 @sources @sources-types
-Feature: sources/?types
-  Acceptance tests for the query string field 'types'.
+Feature: sources-types
+  # Acceptance tests for the query string field 'types'.
 
 
   @sources-supported-type
-  Scenario: supported type
+  Scenario: sources-supported-type
 
     Given a valid public MET API client ID
 
@@ -27,7 +27,7 @@ Feature: sources/?types
 
 # Uncomment the following test once we have implemented T2887
 #  @sources-unsupported-type
-#  Scenario: unsupported type
+#  Scenario: sources-unsupported-type
 
 #    Given a valid public MET API client ID
 

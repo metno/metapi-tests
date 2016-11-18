@@ -1,11 +1,12 @@
 @elements @elements-lang
-Feature: elements/?lang
-  Acceptance tests for the query string field 'lang'.
+Feature: elements-lang
+  # Acceptance tests for the query string field 'lang'.
+
 
   @elements-valid-lang-en-US
-  Scenario: valid language en-US
+  Scenario: elements-valid-lang-en-US
 
-    Specifying lang=en-US should return appropriate data.
+    # Specifying lang=en-US should return appropriate data.
 
     Given a valid public MET API client ID
 
@@ -28,9 +29,9 @@ Feature: elements/?lang
 
 
   @elements-valid-lang-nb-NO
-  Scenario: valid language nb-NO
+  Scenario: elements-valid-lang-nb-NO
 
-  Specifying lang=nb-NO should return appropriate data.
+    # Specifying lang=nb-NO should return appropriate data.
 
     Given a valid public MET API client ID
 
@@ -53,9 +54,9 @@ Feature: elements/?lang
 
 
   @elements-valid-lang-nn-NO
-  Scenario: valid language nn-NO
+  Scenario: elements-valid-lang-nn-NO
 
-  Specifying lang=nn-NO should return appropriate data.
+    # Specifying lang=nn-NO should return appropriate data.
 
     Given a valid public MET API client ID
 
@@ -78,9 +79,9 @@ Feature: elements/?lang
 
 
   @elements-invalid-lang
-  Scenario: invalid language
+  Scenario: elements-invalid-lang
 
-  Specifying an invalid language should result in 400/BadRequest
+    # Specifying an invalid language should result in 400/BadRequest
 
     Given a valid public MET API client ID
 

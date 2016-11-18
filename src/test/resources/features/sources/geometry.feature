@@ -1,10 +1,10 @@
 @sources @sources-geometry
-Feature: sources/?geometry
-  Acceptance tests for the query string field 'geometry'.
+Feature: sources-geometry
+  # Acceptance tests for the query string field 'geometry'.
 
 
   @sources-unsupported-geometry
-  Scenario: unsupported geometry
+  Scenario: sources-unsupported-geometry
 
     Given a valid public MET API client ID
 

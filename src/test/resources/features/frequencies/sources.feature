@@ -1,12 +1,12 @@
 @frequencies @frequencies-rainfallidfs-sources
-Feature: frequencies/rainfallIDFs/?sources
-  Acceptance tests for the query string field 'sources'.
+Feature: frequencies-rainfallidfs-sources
+  # Acceptance tests for the query string field 'sources'.
 
 
   @frequencies-rainfallidfs-one-source
-  Scenario: one source
+  Scenario: frequencies-rainfallidfs-one-source
 
-    Specifying a single source should return data for that source.
+    # Specifying a single source should return data for that source.
 
     Given a valid public MET API client ID
 
@@ -28,10 +28,10 @@ Feature: frequencies/rainfallIDFs/?sources
     """
 
 
-  @frequencies-rainfallidfs-multiple-sources
-  Scenario: multiple sources part 1:2
+  @frequencies-rainfallidfs-multiple-sources-part-1:2
+  Scenario: frequencies-rainfallidfs-multiple-sources-part-1:2
 
-    Specifying two sources should return data for those sources, and the result should be sorted on the source ID.
+    # Specifying two sources should return data for those sources, and the result should be sorted on the source ID.
 
     Given a valid public MET API client ID
 
@@ -56,10 +56,10 @@ Feature: frequencies/rainfallIDFs/?sources
     """
 
 
-  @frequencies-rainfallidfs-multiple-sources
-  Scenario: multiple sources part 2:2
+  @frequencies-rainfallidfs-multiple-sources-part-2:2
+  Scenario: frequencies-rainfallidfs-multiple-sources-part-2:2
 
-    Check that the result is still sorted on source ID even if the order is changed in the query string.
+    # Check that the result is still sorted on source ID even if the order is changed in the query string.
 
     Given a valid public MET API client ID
 
