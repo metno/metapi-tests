@@ -67,7 +67,7 @@ Feature: frequencies-rainfallidfs-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: sources, durations, frequencies, fields"
+    "help" : "Supported fields: durations, fields, unit, sources, frequencies"
   }
 }
     """
