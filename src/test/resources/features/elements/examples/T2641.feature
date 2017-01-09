@@ -31,9 +31,9 @@ Feature: elements-examples-T2641
     },
     "cfConvention" : {
       "standardName" : "air_temperature",
-      "cellMethod" : "min",
+      "cellMethod" : "time: minimum",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   }, {
     "id" : "min\\(air_temperature T10M\\)",
@@ -47,9 +47,9 @@ Feature: elements-examples-T2641
     },
     "cfConvention" : {
       "standardName" : "air_temperature",
-      "cellMethod" : "min",
+      "cellMethod" : "time: minimum",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   }, {
     "id" : "min\\(air_temperature T1H\\)",
@@ -63,9 +63,9 @@ Feature: elements-examples-T2641
     },
     "cfConvention" : {
       "standardName" : "air_temperature",
-      "cellMethod" : "min",
+      "cellMethod" : "time: minimum",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   }, {
     "id" : "min\\(air_temperature T24H\\)",
@@ -79,9 +79,9 @@ Feature: elements-examples-T2641
     },
     "cfConvention" : {
       "standardName" : "air_temperature",
-      "cellMethod" : "min",
+      "cellMethod" : "time: minimum",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   } ]
 }
