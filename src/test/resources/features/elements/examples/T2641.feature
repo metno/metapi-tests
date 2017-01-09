@@ -116,9 +116,9 @@ Feature: elements-examples-T2641
     },
     "cfConvention" : {
       "standardName" : "soil_temperature",
-      "cellMethod" : "mean",
+      "cellMethod" : "time: mean",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   }, {
     "id" : "soil_temperature",
@@ -133,7 +133,7 @@ Feature: elements-examples-T2641
     "cfConvention" : {
       "standardName" : "soil_temperature",
       "unit" : "K",
-      "status" : "28"
+      "status" : "37"
     }
   } ]
 }
