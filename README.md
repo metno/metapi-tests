@@ -79,7 +79,7 @@ Scenario names must be unique
 
 **Important:** Scenario names (the free text following the `Scenario:` keyword) must be globally unique within the same test run even if they are located in different .feature files and/or under different `Feature:` keywords.
 
-Executing two scenarios with the same name will be considered multiple executions of the same scenario. Cucumber might consider the overall test execution as passed (i.e. the test runner process eventually exiting with status=0) as long as at least one of the multiple executions pass. A test failure might then go undetected.  
+Executing two scenarios with the same name will be considered multiple executions of the same scenario. Cucumber might consider the overall test execution as passed (i.e. the test runner process eventually exiting with status=0) as long as at least one of the multiple executions passes. A test failure might then go undetected.  
 
 
 Test a local server that runs a single module
