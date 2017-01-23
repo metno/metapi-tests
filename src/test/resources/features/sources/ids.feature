@@ -98,7 +98,7 @@ Feature: sources-ids
   @sources-invalid-source
   Scenario: sources-invalid-source
 
-    # Specifying an invalid source should return status=400
+    # Specifying an invalid station source should return status=400
 
     Given a valid public MET API client ID
 
@@ -114,7 +114,7 @@ Feature: sources-ids
   "error" : {
     "code" : 400,
     "message" : "Bad Request",
-    "reason" : "Invalid source name: .+"
+    "reason" : "Invalid station source name: .+"
    }
 }
     """
