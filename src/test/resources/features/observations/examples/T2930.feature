@@ -14,7 +14,7 @@ Feature: observations-examples-T2930
 
     When request_get
     """
-    observations/v0.jsonld?sources=SN18700&referencetime=2016-11-01T00:00:00Z/2016-11-02T00:00:00Z&fields=value&elements=time_of_event_of_min(air_temperature 1M)
+    observations/v0.jsonld?sources=SN18700&referencetime=2016-11-01T00:00:00Z/2016-11-02T00:00:00Z&fields=value&elements=time_of_event_of_min(air_temperature P1M)
     """
 
     Then response_jsonSubset_200
@@ -25,9 +25,8 @@ Feature: observations-examples-T2930
     "sourceId" : "SN18700:0",
     "referenceTime" : "2016-11-01T00:00:00.000Z",
     "observations" : [ {
-      "elementId" : "time_of_event_of_min\\(air_temperature 1M\\)",
+      "elementId" : "time_of_event_of_min\\(air_temperature P1M\\)",
       "value" : "2016-11-11 00:00:00.0",
-      "unit" : "Date",
       "performanceCategory" : "A",
       "exposureCategory" : "1"
     } ]

@@ -87,7 +87,7 @@ Test a local server that runs a single module
 
 To test a local server that runs a single module, such as the _frequencies_ module, we can use a combination of tags and `REQUESTPREFIX` like this:
 
-  `CUCUMBER_OPTIONS="--tags @frequencies" METAPIBASE=localhost:9000 REQUESTPREFIX=frequencies/ sbt test`
+  `CUCUMBER_OPTIONS="--tags @frequencies" METAPIBASE=http://localhost:9000 REQUESTPREFIX=frequencies/ sbt test`
 
 In this case, all occurrences of "frequencies/" in the Gherkin source will be stripped from the URL before the HTTP request is executed.
 
