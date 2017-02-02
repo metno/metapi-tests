@@ -1,10 +1,10 @@
-@frequencies @frequencies-rainfallidfs-availablesources-sources
-Feature: frequencies-rainfallidfs-availablesources-sources
+@frequencies @frequencies-rainfall-availablesources-sources
+Feature: frequencies-rainfall-availablesources-sources
   # Acceptance tests for the query string field 'sources'.
 
 
-  @frequencies-rainfallidfs-availablesources-one-source
-  Scenario: frequencies-rainfallidfs-availablesources-one-source
+  @frequencies-rainfall-availablesources-one-source
+  Scenario: frequencies-rainfall-availablesources-one-source
 
     # Specifying a single source should return a result for that source.
 
@@ -12,7 +12,7 @@ Feature: frequencies-rainfallidfs-availablesources-sources
 
     When request_get
     """
-    frequencies/rainfallIDFs/availableSources/v0.jsonld?sources=SN18701
+    frequencies/rainfall/availableSources/v0.jsonld?sources=SN18701
     """
 
     Then response_jsonSubset_200
@@ -28,8 +28,8 @@ Feature: frequencies-rainfallidfs-availablesources-sources
     """
 
 
-  @frequencies-rainfallidfs-availablesources-multiple-sources-part-1:2
-  Scenario: frequencies-rainfallidfs-availablesources-multiple-sources-part-1:2
+  @frequencies-rainfall-availablesources-multiple-sources-part-1:2
+  Scenario: frequencies-rainfall-availablesources-multiple-sources-part-1:2
 
     # Specifying two sources should return a result for those sources, and the result should be sorted on the source ID.
 
@@ -37,7 +37,7 @@ Feature: frequencies-rainfallidfs-availablesources-sources
 
     When request_get
     """
-    frequencies/rainfallIDFs/availableSources/v0.jsonld?sources=SN18701,SN18920
+    frequencies/rainfall/availableSources/v0.jsonld?sources=SN18701,SN18920
     """
 
     Then response_jsonSubset_200
@@ -56,8 +56,8 @@ Feature: frequencies-rainfallidfs-availablesources-sources
     """
 
 
-  @frequencies-rainfallidfs-availablesources-multiple-sources-part-2:2
-  Scenario: frequencies-rainfallidfs-availablesources-multiple-sources-part-2:2
+  @frequencies-rainfall-availablesources-multiple-sources-part-2:2
+  Scenario: frequencies-rainfall-availablesources-multiple-sources-part-2:2
 
     # Check that the result is still sorted on source ID even if the order is changed in the query string.
 
@@ -65,7 +65,7 @@ Feature: frequencies-rainfallidfs-availablesources-sources
 
     When request_get
     """
-    frequencies/rainfallIDFs/availableSources/v0.jsonld?sources=SN18920,SN18701
+    frequencies/rainfall/availableSources/v0.jsonld?sources=SN18920,SN18701
     """
 
     Then response_jsonSubset_200

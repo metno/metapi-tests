@@ -1,10 +1,10 @@
-@frequencies @frequencies-rainfallidfs-durations
-Feature: frequencies-rainfallidfs-durations
+@frequencies @frequencies-rainfall-durations
+Feature: frequencies-rainfall-durations
   # Acceptance tests for the query string field 'durations'.
 
 
-  @frequencies-rainfallidfs-one-duration
-  Scenario: frequencies-rainfallidfs-one-duration
+  @frequencies-rainfall-one-duration
+  Scenario: frequencies-rainfall-one-duration
 
     # Specifying a single duration should return data for that duration only.
 
@@ -17,7 +17,7 @@ Feature: frequencies-rainfallidfs-durations
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?durations=20
+    frequencies/rainfall/v0.jsonld?durations=20
     """
 
     Then response_jsonSubset_200
@@ -72,18 +72,18 @@ Feature: frequencies-rainfallidfs-durations
     """
 
 
-  @frequencies-rainfallidfs-two-durations
-  Scenario: frequencies-rainfallidfs-two-durations
+  @frequencies-rainfall-two-durations
+  Scenario: frequencies-rainfall-two-durations
 
     # Specifying two durations should return a result containing those durations only.
 
-    # (see comment in Scenario frequencies-rainfallidfs-one-duration)
+    # (see comment in Scenario frequencies-rainfall-one-duration)
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?durations=20,10
+    frequencies/rainfall/v0.jsonld?durations=20,10
     """
 
     Then response_jsonSubset_200
@@ -141,8 +141,8 @@ Feature: frequencies-rainfallidfs-durations
     """
 
 
-  @frequencies-rainfallidfs-malformed-durations
-  Scenario: frequencies-rainfallidfs-malformed-durations
+  @frequencies-rainfall-malformed-durations
+  Scenario: frequencies-rainfall-malformed-durations
 
     # Specifying a malformed durations parameter should return a result with status code 400.
 
@@ -150,7 +150,7 @@ Feature: frequencies-rainfallidfs-durations
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?durations=20,foo,10
+    frequencies/rainfall/v0.jsonld?durations=20,foo,10
     """
 
     Then response_jsonSubset_400
@@ -165,8 +165,8 @@ Feature: frequencies-rainfallidfs-durations
     """
 
 
-  @frequencies-rainfallidfs-unsupported-durations
-  Scenario: frequencies-rainfallidfs-unsupported-durations
+  @frequencies-rainfall-unsupported-durations
+  Scenario: frequencies-rainfall-unsupported-durations
 
     # Specifying one or more unsupported durations should return a result with status code 400.
 
@@ -174,7 +174,7 @@ Feature: frequencies-rainfallidfs-durations
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?durations=20,12345,10
+    frequencies/rainfall/v0.jsonld?durations=20,12345,10
     """
 
     Then response_jsonSubset_400
