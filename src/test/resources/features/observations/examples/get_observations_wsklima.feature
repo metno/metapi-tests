@@ -11,7 +11,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I request observations for august and september only from 2004-2006
     """
-    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature 1M),min(air_temperature 1M),sum(precipitation_amount 1M)
+    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)
     """
 
     Then response_jsonSubset_200
@@ -35,7 +35,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve monthly means for all months from July 2005 to July 2006
     """
-    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=max(air_temperature 1M),min(air_temperature 1M),sum(precipitation_amount 1M)
+    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)
     """
 
     Then response_jsonSubset_200
@@ -83,7 +83,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve monthly means over a 30 year period
     """
-    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature 1M)
+    observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature P1M)
     """
 
     Then response_jsonSubset_200
