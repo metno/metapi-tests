@@ -1,5 +1,5 @@
-@frequencies @frequencies-rainfallidfs-unit
-Feature: frequencies-rainfallidfs-unit
+@frequencies @frequencies-rainfall-unit
+Feature: frequencies-rainfall-unit
   # Acceptance tests for the query string field 'unit'.
 
   # --- BEGIN test 1 -----------------------------------------------------------------------------------------------------
@@ -8,8 +8,8 @@ Feature: frequencies-rainfallidfs-unit
   #
   # WARNING: The test must be updated if database values change!
 
-  @frequencies-rainfallidfs-unit-conversion-lsh-1
-  Scenario: frequencies-rainfallidfs-unit-conversion-lsh-1
+  @frequencies-rainfall-unit-conversion-lsh-1
+  Scenario: frequencies-rainfall-unit-conversion-lsh-1
 
     # unit conversion part 1.1: litres per second per hectar (default value)
 
@@ -17,7 +17,7 @@ Feature: frequencies-rainfallidfs-unit
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?sources=SN18701&durations=5&frequencies=2
+    frequencies/rainfall/v0.jsonld?sources=SN18701&durations=5&frequencies=2
     """
 
     Then response_jsonSubset_200
@@ -37,8 +37,8 @@ Feature: frequencies-rainfallidfs-unit
 }
     """
 
-  @frequencies-rainfallidfs-unit-conversion-lsh-2
-  Scenario: frequencies-rainfallidfs-unit-conversion-lsh-2
+  @frequencies-rainfall-unit-conversion-lsh-2
+  Scenario: frequencies-rainfall-unit-conversion-lsh-2
 
     # unit conversion part 1.2: litres per second per hectar (explicitly specifying unit)
 
@@ -46,7 +46,7 @@ Feature: frequencies-rainfallidfs-unit
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?sources=SN18701&durations=5&frequencies=2&unit=l/s*Ha
+    frequencies/rainfall/v0.jsonld?sources=SN18701&durations=5&frequencies=2&unit=l/s*Ha
     """
 
     Then response_jsonSubset_200
@@ -66,8 +66,8 @@ Feature: frequencies-rainfallidfs-unit
 }
     """
 
-  @frequencies-rainfallidfs-unit-conversion-mmmd
-  Scenario: frequencies-rainfallidfs-unit-conversion-mmmd
+  @frequencies-rainfall-unit-conversion-mmmd
+  Scenario: frequencies-rainfall-unit-conversion-mmmd
 
     # unit conversion part 2: millimetres per minute multiplied by duration
 
@@ -82,7 +82,7 @@ Feature: frequencies-rainfallidfs-unit
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?sources=SN18701&durations=5&frequencies=2&unit=mm
+    frequencies/rainfall/v0.jsonld?sources=SN18701&durations=5&frequencies=2&unit=mm
     """
 
     Then response_jsonSubset_200

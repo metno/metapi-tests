@@ -1,10 +1,10 @@
-@frequencies @frequencies-rainfallidfs-overall
-Feature: frequencies-rainfallidfs-overall
+@frequencies @frequencies-rainfall-overall
+Feature: frequencies-rainfall-overall
   # Overall acceptance tests.
 
 
-  @frequencies-rainfallidfs-empty-request
-  Scenario: frequencies-rainfallidfs-empty-request
+  @frequencies-rainfall-empty-request
+  Scenario: frequencies-rainfall-empty-request
 
     # An empty query string should return a reasonable result.
 
@@ -12,7 +12,7 @@ Feature: frequencies-rainfallidfs-overall
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld
+    frequencies/rainfall/v0.jsonld
     """
 
     Then response_jsonSubset_200
@@ -50,14 +50,14 @@ Feature: frequencies-rainfallidfs-overall
     """
 
 
-  @frequencies-rainfallidfs-unsupported-field
-  Scenario: frequencies-rainfallidfs-unsupported-field
+  @frequencies-rainfall-unsupported-field
+  Scenario: frequencies-rainfall-unsupported-field
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    frequencies/rainfallIDFs/v0.jsonld?foo=bar
+    frequencies/rainfall/v0.jsonld?foo=bar
     """
 
     Then response_jsonSubset_400

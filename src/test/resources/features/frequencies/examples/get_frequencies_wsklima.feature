@@ -10,7 +10,7 @@ Feature: frequencies-examples-wsklima
     When request_get
     # I request IVF data for Oslo-Blindern SN18701
     """
-    frequencies/rainfallIDFs/v0.jsonld?sources=SN18701
+    frequencies/rainfall/v0.jsonld?sources=SN18701
     """
 
     Then response_jsonSubset_200
