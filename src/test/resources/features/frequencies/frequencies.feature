@@ -1,10 +1,10 @@
-@frequencies @frequencies-rainfall-frequencies
-Feature: frequencies-rainfall-frequencies
+@frequencies @frequencies-rainfallidfs-frequencies
+Feature: frequencies-rainfallidfs-frequencies
   # Acceptance tests for the query string field 'frequencies'.
 
 
-  @frequencies-rainfall-one-frequency
-  Scenario: frequencies-rainfall-one-frequency
+  @frequencies-rainfallidfs-one-frequency
+  Scenario: frequencies-rainfallidfs-one-frequency
 
     # Specifying a single frequency should return data for that frequency only.
 
@@ -17,7 +17,7 @@ Feature: frequencies-rainfall-frequencies
 
     When request_get
     """
-    frequencies/rainfall/v0.jsonld?frequencies=20
+    frequencies/rainfallIDFs/v0.jsonld?frequencies=20
     """
 
     Then response_jsonSubset_200
@@ -72,18 +72,18 @@ Feature: frequencies-rainfall-frequencies
     """
 
 
-  @frequencies-rainfall-two-frequencies
-  Scenario: frequencies-rainfall-two-frequencies
+  @frequencies-rainfallidfs-two-frequencies
+  Scenario: frequencies-rainfallidfs-two-frequencies
 
     # Specifying two frequencies should return data for those frequencies only.
 
-    # (see comment in Scenario frequencies-rainfall-one-frequency)
+    # (see comment in Scenario frequencies-rainfallidfs-one-frequency)
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    frequencies/rainfall/v0.jsonld?frequencies=25,20
+    frequencies/rainfallIDFs/v0.jsonld?frequencies=25,20
     """
 
     Then response_jsonSubset_200
@@ -141,8 +141,8 @@ Feature: frequencies-rainfall-frequencies
     """
 
 
-  @frequencies-rainfall-malformed-frequencies
-  Scenario: frequencies-rainfall-malformed-frequencies
+  @frequencies-rainfallidfs-malformed-frequencies
+  Scenario: frequencies-rainfallidfs-malformed-frequencies
 
     # Specifying a malformed frequencies parameter should return a result with status code 400.
 
@@ -150,7 +150,7 @@ Feature: frequencies-rainfall-frequencies
 
     When request_get
     """
-    frequencies/rainfall/v0.jsonld?frequencies=25,foo,20
+    frequencies/rainfallIDFs/v0.jsonld?frequencies=25,foo,20
     """
 
     Then response_jsonSubset_400
@@ -165,8 +165,8 @@ Feature: frequencies-rainfall-frequencies
     """
 
 
-  @frequencies-rainfall-unsupported-frequencies
-  Scenario: frequencies-rainfall-unsupported-frequencies
+  @frequencies-rainfallidfs-unsupported-frequencies
+  Scenario: frequencies-rainfallidfs-unsupported-frequencies
 
     # Specifying one or more unsupported frequencies should return a result with status code 400.
 
@@ -174,7 +174,7 @@ Feature: frequencies-rainfall-frequencies
 
     When request_get
     """
-    frequencies/rainfall/v0.jsonld?frequencies=25,12345,20
+    frequencies/rainfallIDFs/v0.jsonld?frequencies=25,12345,20
     """
 
     Then response_jsonSubset_400
