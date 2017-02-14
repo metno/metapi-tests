@@ -41,6 +41,21 @@ Feature: frequencies-rainfall-availablesources-overall
 }
     """
 
+    And response_jsonSubset_200
+    """
+{
+  "data" :
+  [
+    {
+      "sourceId" : "idf_bma1km_v1",
+      "validFrom" : ".+",
+      "validTo" : ".+",
+      "numberOfSeasons" : "\\d+"
+    }
+  ]
+}
+    """
+
 
   @frequencies-rainfall-availablesources-unsupported-field
   Scenario: frequencies-rainfall-availablesources-unsupported-field
