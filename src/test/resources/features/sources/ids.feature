@@ -139,7 +139,7 @@ Feature: sources-ids
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for any of the source ids"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """

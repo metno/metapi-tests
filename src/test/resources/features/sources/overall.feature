@@ -73,7 +73,7 @@ Feature: sources-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: validtime, fields, ids, types, geometry"
+    "help" : "Supported fields: name, country, validtime, fields, ids, types, geometry"
   }
 }
     """
