@@ -114,7 +114,7 @@ Feature: sources-ids
   "error" : {
     "code" : 400,
     "message" : "Bad Request",
-    "reason" : "Invalid station source name: .+"
+    "reason" : "Source misspelled or not found: .+"
    }
 }
     """

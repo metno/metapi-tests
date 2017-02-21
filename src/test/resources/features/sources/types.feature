@@ -10,7 +10,7 @@ Feature: sources-types
 
     When request_get
     """
-    sources/v0.jsonld?ids=SN18700&types=SensorPlatform
+    sources/v0.jsonld?ids=SN18700&types=SensorSystem
     """
 
     Then response_jsonSubset_200
@@ -18,7 +18,7 @@ Feature: sources-types
 {
   "@type" : "SourceResponse",
   "data" : [ {
-    "@type" : "SensorPlatform",
+    "@type" : "SensorSystem",
     "id" : "SN18700",
     "name" : "OSLO - BLINDERN"
   } ]
