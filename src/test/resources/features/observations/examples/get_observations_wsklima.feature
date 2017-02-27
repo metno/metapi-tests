@@ -58,7 +58,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve all 00, 06, 12, 18 observations for January 2006
     """
-    observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature T1H),max(air_temperature T1H)
+    observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature PT1H),max(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -130,7 +130,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve twice daily min and max temperatures for Gardermoen
     """
-    observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature T12H),max(air_temperature T12H)
+    observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature PT12H),max(air_temperature PT12H)
     """
 
     Then response_jsonSubset_200
@@ -153,7 +153,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve 0600 min and max temperatures for Gardermoen
     """
-    observations/v0.jsonld?sources=SN4780:0&referencetime=R30/2008-09-01T06:00:00.000Z/2008-09-01T06:00:00.000Z/PT24H&elements=min(air_temperature T12H),max(air_temperature T12H)
+    observations/v0.jsonld?sources=SN4780:0&referencetime=R30/2008-09-01T06:00:00.000Z/2008-09-01T06:00:00.000Z/PT24H&elements=min(air_temperature PT12H),max(air_temperature PT12H)
     """
 
     Then response_jsonSubset_200
@@ -176,7 +176,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve 1200 min and max temperatures for Ekofisk
     """
-    observations/v0.jsonld?sources=SN76920&referencetime=R30/2008-09-01T12:00/2008-09-01T12:00/PT24H&elements=max(air_temperature T1H),min(air_temperature T1H)
+    observations/v0.jsonld?sources=SN76920&referencetime=R30/2008-09-01T12:00/2008-09-01T12:00/PT24H&elements=max(air_temperature PT1H),min(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -199,7 +199,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve 10-minute precipitation observations for 12 UTC at Blindern in May 2016
     """
-    observations/v0.jsonld?sources=SN18700:0&referencetime=R31/2016-05-01T12:00:00.000Z/2016-05-01T12:00:00.000Z/PT24H&elements=sum(precipitation_amount T10M)
+    observations/v0.jsonld?sources=SN18700:0&referencetime=R31/2016-05-01T12:00:00.000Z/2016-05-01T12:00:00.000Z/PT24H&elements=sum(precipitation_amount PT10M)
     """
 
     Then response_jsonSubset_200
@@ -222,7 +222,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I retrieve all 10-minute precipitation observations for Blindern in May 2016
     """
-    observations/v0.jsonld?sources=SN18700:0&referencetime=2016-05-01T00:00:00.000Z/2016-06-01T00:00:00.000Z&elements=sum(precipitation_amount T10M)
+    observations/v0.jsonld?sources=SN18700:0&referencetime=2016-05-01T00:00:00.000Z/2016-06-01T00:00:00.000Z&elements=sum(precipitation_amount PT10M)
     """
 
     Then response_jsonSubset_200
@@ -267,7 +267,7 @@ Feature: observations-examples @observations-examples-wsklima
     When request_get
     # I request all of the max wind speed of gust 10-minute observations from Ekofisk
     """
-    observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust T10M)
+    observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust PT10M)
     """
 
     Then response_jsonSubset_200

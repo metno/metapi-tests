@@ -14,7 +14,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a valid source, referencetime and elementId
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700&referencetime=2004-07-01T00:00:00/2004-09-01T00:00:00&elements=max(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700&referencetime=2004-07-01T00:00:00/2004-09-01T00:00:00&elements=max(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -45,8 +45,7 @@ Feature: observations-examples-availabletimeseries
       "validFrom" : ".+",
       "timeOffset" : ".+",
       "resultTimeInterval" : ".+",
-      "elementId" : "max\\(air_temperature T1H\\)",
-      "unit" : ".+",
+      "elementId" : "max\\(air_temperature PT1H\\)",
       "performanceCategory" : ".+",
       "exposureCategory" : ".+",
       "status" : ".+",
@@ -65,7 +64,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a non-existent source
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN99999&referencetime=2004-07-01T00:00:00/2004-09-01T00:00:00&elements=max(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN99999&referencetime=2004-07-01T00:00:00/2004-09-01T00:00:00&elements=max(air_temperature PT1H)
     """
 
     Then response_jsonSubset_404
@@ -145,7 +144,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries for a non-existing referencetime period
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700&referencetime=1990-07-01T00:00:00/1990-09-01T00:00:00&elements=max(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700&referencetime=1990-07-01T00:00:00/1990-09-01T00:00:00&elements=max(air_temperature PT1H)
     """
 
     Then response_jsonSubset_404
@@ -170,7 +169,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime inside the period of a time series
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1996-01-01T00:00:00.000Z/1996-03-01T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1996-01-01T00:00:00.000Z/1996-03-01T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -193,7 +192,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime overlapping the lower bounds of a period of a time series
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1992-11-01T00:00:00.000Z/1993-01-01T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1992-11-01T00:00:00.000Z/1993-01-01T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -216,7 +215,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime overlapping the upper bounds of a period of a time series
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=2006-03-01T00:00:00.000Z/2006-05-01T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=2006-03-01T00:00:00.000Z/2006-05-01T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -229,6 +228,7 @@ Feature: observations-examples-availabletimeseries
   } ]
 }
     """
+
 
 # ### Doesn't work any longer (as of 2017-02-21) ... TBD
 #  @observations-examples-get-available-observations-for-a-referencetime-period-overlap-both
@@ -286,7 +286,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime before the period of a time series
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1992-03-01T00:00:00.000Z/1992-05-01T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1992-03-01T00:00:00.000Z/1992-05-01T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_404
@@ -311,7 +311,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime after the period of a time series
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=2007-03-01T00:00:00.000Z/2007-05-01T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=2007-03-01T00:00:00.000Z/2007-05-01T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_404
@@ -336,7 +336,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with a referencetime period where the startvalue and endvalue both match with observations
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1996-01-01T00:00:00.000Z/1996-01-02T00:00:00.000Z&elements=mean(air_temperature%20T1H)
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1996-01-01T00:00:00.000Z/1996-01-02T00:00:00.000Z&elements=mean(air_temperature PT1H)
     """
 
     Then response_jsonSubset_200
@@ -384,7 +384,7 @@ Feature: observations-examples-availabletimeseries
     When request_get
     # I request available observation timeseries with multiple elementIds
     """
-    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1961-11-01T00:00:00.000Z/1962-02-01T00:00:00Z&elements=high_type_cloud,%20low_type_cloud
+    observations/availableTimeSeries/v0.jsonld?sources=SN18700:0&referencetime=1961-11-01T00:00:00.000Z/1962-02-01T00:00:00Z&elements=high_type_cloud,low_type_cloud
     """
 
     Then response_jsonSubset_200

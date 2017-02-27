@@ -56,7 +56,6 @@ Feature: observations-examples-T2930
     "observations" : [ {
       "elementId" : "visibility_in_air_horizontal",
       "value" : 30000,
-      "unit" : "meters",
       "performanceCategory" : "A",
       "exposureCategory" : "1",
       "qualityCode" : 0
