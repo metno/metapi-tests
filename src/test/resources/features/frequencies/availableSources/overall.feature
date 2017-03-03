@@ -74,7 +74,7 @@ Feature: frequencies-rainfall-availablesources-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: sources, fields"
+    "help" : "Supported fields: sources, types, fields"
   }
 }
     """
