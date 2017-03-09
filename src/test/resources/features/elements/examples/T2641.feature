@@ -20,7 +20,7 @@ Feature: elements-examples-T2641
   "@type" : "ElementResponse",
   "totalItemCount" : 4,
   "data" : [ {
-    "id" : "min\\(air_temperature 1M\\)",
+    "id" : "min\\(air_temperature P1M\\)",
     "name" : "Minimum temperature",
     "description" : "Lowest noted temperature this hour/day \\(from 18 to 18\\)/month.",
     "unit" : "degC",
@@ -36,7 +36,7 @@ Feature: elements-examples-T2641
       "status" : "37"
     }
   }, {
-    "id" : "min\\(air_temperature T10M\\)",
+    "id" : "min\\(air_temperature PT10M\\)",
     "name" : "Minimum temperature",
     "description" : "Lowest noted temperature this hour/day \\(from 18 to 18\\)/month.",
     "unit" : "degC",
@@ -52,7 +52,7 @@ Feature: elements-examples-T2641
       "status" : "37"
     }
   }, {
-    "id" : "min\\(air_temperature T1H\\)",
+    "id" : "min\\(air_temperature PT1H\\)",
     "name" : "Minimum temperature",
     "description" : "Lowest noted temperature this hour/day \\(from 18 to 18\\)/month.",
     "unit" : "degC",
@@ -68,7 +68,7 @@ Feature: elements-examples-T2641
       "status" : "37"
     }
   }, {
-    "id" : "min\\(air_temperature T24H\\)",
+    "id" : "min\\(air_temperature PT24H\\)",
     "name" : "Air temperatur",
     "description" : "Lowest noted temperature this hour/day \\(from 00 to 23\\)",
     "unit" : "degC",
@@ -105,7 +105,7 @@ Feature: elements-examples-T2641
   "@type" : "ElementResponse",
   "totalItemCount" : 2,
   "data" : [ {
-    "id" : "mean\\(soil_temperature T1H\\)",
+    "id" : "mean\\(soil_temperature PT1H\\)",
     "name" : "Mean soil temperature \\(-10 cm\\)",
     "description" : "Mean soil temperature at 1 cm depth",
     "unit" : "degC",
