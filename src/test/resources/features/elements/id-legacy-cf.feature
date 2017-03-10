@@ -362,7 +362,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?ids=max(cloud_area_fraction T24H)&cfStandardNames=cloud_area_fraction
+    elements/v0.jsonld?ids=max(cloud_area_fraction PT24H)&cfStandardNames=cloud_area_fraction
     """
 
     Then response_jsonSubset_200
@@ -370,7 +370,7 @@ Feature: elements-id-legacy-cf
 {
   "data": [
     {
-      "id": "max\\(cloud_area_fraction T24H\\)",
+      "id": "max\\(cloud_area_fraction PT24H\\)",
       "cfConvention": {
         "standardName": "cloud_area_fraction"
       }
