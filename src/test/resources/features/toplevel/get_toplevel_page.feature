@@ -12,7 +12,7 @@ Feature: toplevel
     """
 
     Then response_contains_200
-    # I should get a response with status code = 200 and body containing 'API Overview'
+    # I should get a response with status code = 200 and body containing 'The data.met.no API'
     """
-    API Overview
+    The data.met.no API
     """
