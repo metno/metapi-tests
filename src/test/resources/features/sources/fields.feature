@@ -17,12 +17,13 @@ Feature: sources-fields
     """
 
     Then response_jsonSubset_200
-    # ... the response should contain data for that fields value ...
+    # ... the response should contain data for that fields value and the required 'id' value ...
     """
 {
   "data" :
    [
      {
+       "id" : ".+",
        "geometry" : {}
      }
    ]
@@ -37,7 +38,7 @@ Feature: sources-fields
   "data" :
   [
     {
-      "id" : ".+"
+      "validFrom" : ".+"
     }
   ]
 }
@@ -49,7 +50,7 @@ Feature: sources-fields
   "data" :
   [
     {
-      "validFrom" : ".+"
+      "validTo" : ".+"
     }
   ]
 }
@@ -68,18 +69,19 @@ Feature: sources-fields
     When request_get
     # when we ask for data for two fields values ...
     """
-    sources/v0.jsonld?ids=SN18700&fields=geometry,id
+    sources/v0.jsonld?ids=SN18700&fields=geometry,validFrom
     """
 
     Then response_jsonSubset_200
-    # ... the response should contain data for those fields values ...
+    # ... the response should contain data for those fields values and the required 'id' value ...
     """
 {
   "data" :
    [
      {
+       "id" : ".+",
        "geometry" : {},
-       "id" : ".+"
+       "validFrom" : ".+"
      }
    ]
 }
@@ -92,7 +94,7 @@ Feature: sources-fields
   "data" :
   [
     {
-      "validFrom" : ".+"
+      "validTo" : ".+"
     }
   ]
 }
