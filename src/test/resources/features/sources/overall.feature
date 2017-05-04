@@ -73,7 +73,7 @@ Feature: sources-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: shipcode, name, country, validtime, externalid, fields, ids, stationholder, icaocode, types, geometry"
+    "help" : "Supported fields: shipcode, name, country, county, validtime, externalid, fields, ids, municipality, stationholder, icaocode, types, geometry"
   }
 }
     """
