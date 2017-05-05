@@ -41,14 +41,7 @@ Feature: sources-overall
         "@type" : ".+",
         "coordinates" : [ ".+", ".+" ]
       },
-      "levels" :
-      [
-        {
-          "levelType" : ".+",
-          "value" : ".+",
-          "unit" : ".+"
-        }
-      ],
+      "masl" : ".+",
       "validFrom" : "\\d\\d\\d\\d-\\d\\d-\\d\\d"
     }
   ]
