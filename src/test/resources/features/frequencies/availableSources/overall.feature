@@ -47,7 +47,7 @@ Feature: frequencies-rainfall-availablesources-overall
   "data" :
   [
     {
-      "sourceId" : "idf_bma1km_v1",
+      "sourceId" : "idf_bma1km",
       "validFrom" : ".+",
       "validTo" : ".+",
       "numberOfSeasons" : "\\d+"
