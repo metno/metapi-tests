@@ -281,7 +281,7 @@ Feature: observations-examples @observations-examples-wsklima
     # get a full set of data
     """
 {
-  "totalItemCount": 837,
+  "totalItemCount": 3124,
   "data" : [ {
     "referenceTime": "20..-..-..T..:..:00.000Z"
   } ]
