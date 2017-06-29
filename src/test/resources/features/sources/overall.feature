@@ -66,7 +66,7 @@ Feature: sources-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: wmoid, shipcode, name, country, county, validtime, externalid, fields, ids, municipality, stationholder, icaocode, types, geometry"
+    "help" : "Supported fields: wmoid, shipcode, name, country, county, validtime, externalid, fields, wigosid, ids, municipality, stationholder, icaocode, types, geometry"
   }
 }
     """
