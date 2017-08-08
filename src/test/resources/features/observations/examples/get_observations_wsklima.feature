@@ -272,16 +272,16 @@ Feature: observations-examples @observations-examples-wsklima
     Given a valid public MET API client ID
 
     When request_get
-    # I request all of the max wind speed of gust 10-minute observations from Ekofisk
+    # I request max wind speed of gust 10-minute observations from Ekofisk for a certain period
     """
-    observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust PT10M)
+    observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2008-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust PT10M)
     """
 
     Then response_jsonSubset_200
     # get a full set of data
     """
 {
-  "totalItemCount": 3124,
+  "totalItemCount": 778,
   "data" : [ {
     "referenceTime": "20..-..-..T..:..:00.000Z"
   } ]
