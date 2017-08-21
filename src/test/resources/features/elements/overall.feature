@@ -36,9 +36,9 @@ Feature: elements-overall
       "name" : ".+",
       "description" : ".+",
       "unit" : ".+",
-      "legacyMetNoConvention" : {
-        "elemCodes" : [ ".+" ],
-        "category" : ".+",
+      "category" : ".+",
+      "legacyConvention" : {
+        "elementCodes" : [ ".+" ],
         "unit" : ".+"
       },
       "cfConvention" : {
@@ -69,7 +69,7 @@ Feature: elements-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: cfStandardNames, fields, ids, lang, legacyElemCodes"
+    "help" : "Supported fields: cfStatuses, names, legacyElementCodes, statuses, codeTables, sensorLevels, cfStandardNames, legacyUnits, fields, units, categories, ids, lang, calculationMethod, cfUnits, cfCellMethods, descriptions"
   }
 }
     """

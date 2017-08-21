@@ -1,6 +1,6 @@
 @elements @elements-id-legacy-cf
 Feature: elements-id-legacy-cf
-  # Acceptance tests for the query string fields 'ids', 'legacyElemCodes', and 'cfStandardNames'.
+  # Acceptance tests for the query string fields 'ids', 'legacyElementCodes', and 'cfStandardNames'.
 
   # --- element ID ------------------------------------------------------
 
@@ -115,8 +115,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
@@ -134,7 +133,7 @@ Feature: elements-id-legacy-cf
     When request_get
     # when we ask for data for one element ...
     """
-    elements/v0.jsonld?legacyElemCodes=TA
+    elements/v0.jsonld?legacyElementCodes=TA
     """
 
     Then response_jsonSubset_200
@@ -142,8 +141,8 @@ Feature: elements-id-legacy-cf
     """
 {
   "data" : [ {
-    "legacyMetNoConvention" : {
-      "elemCodes" : [ "TA" ]
+    "legacyConvention" : {
+      "elementCodes" : [ "TA" ]
     }
   } ]
 }
@@ -160,7 +159,7 @@ Feature: elements-id-legacy-cf
     When request_get
     # when we ask for data for two elements ...
     """
-    elements/v0.jsonld?legacyElemCodes=TA,FF
+    elements/v0.jsonld?legacyElementCodes=TA,FF
     """
 
     Then response_jsonSubset_200
@@ -169,13 +168,13 @@ Feature: elements-id-legacy-cf
 {
   "data" : [
     {
-      "legacyMetNoConvention" : {
-        "elemCodes" : [ "TA" ]
+      "legacyConvention" : {
+        "elementCodes" : [ "TA" ]
       }
     },
     {
-      "legacyMetNoConvention" : {
-        "elemCodes" : [ "FF" ]
+      "legacyConvention" : {
+        "elementCodes" : [ "FF" ]
       }
     }
   ]
@@ -192,7 +191,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?legacyElemCodes=foobar
+    elements/v0.jsonld?legacyElementCodes=foobar
     """
 
     Then response_jsonSubset_404
@@ -202,8 +201,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
@@ -289,8 +287,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
@@ -307,7 +304,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?ids=air_temperature&legacyElemCodes=TA
+    elements/v0.jsonld?ids=air_temperature&legacyElementCodes=TA
     """
 
     Then response_jsonSubset_200
@@ -316,8 +313,8 @@ Feature: elements-id-legacy-cf
   "data": [
     {
       "id": "air_temperature",
-      "legacyMetNoConvention": {
-        "elemCodes": [
+      "legacyConvention": {
+        "elementCodes": [
           "TA"
         ]
       }
@@ -336,7 +333,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?ids=air_temperature&legacyElemCodes=FFB
+    elements/v0.jsonld?ids=air_temperature&legacyElementCodes=FFB
     """
 
     Then response_jsonSubset_404
@@ -346,8 +343,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
@@ -362,7 +358,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?ids=max(cloud_area_fraction PT24H)&cfStandardNames=cloud_area_fraction
+    elements/v0.jsonld?ids=max(cloud_area_fraction P1D)&cfStandardNames=cloud_area_fraction
     """
 
     Then response_jsonSubset_200
@@ -370,7 +366,7 @@ Feature: elements-id-legacy-cf
 {
   "data": [
     {
-      "id": "max\\(cloud_area_fraction PT24H\\)",
+      "id": "max\\(cloud_area_fraction P1D\\)",
       "cfConvention": {
         "standardName": "cloud_area_fraction"
       }
@@ -399,8 +395,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
@@ -415,7 +410,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?legacyElemCodes=TA&cfStandardNames=air_temperature
+    elements/v0.jsonld?legacyElementCodes=TA&cfStandardNames=air_temperature
     """
 
     Then response_jsonSubset_200
@@ -423,8 +418,8 @@ Feature: elements-id-legacy-cf
 {
   "data": [
     {
-      "legacyMetNoConvention": {
-        "elemCodes": [
+      "legacyConvention": {
+        "elementCodes": [
           "TA"
         ]
       },
@@ -446,7 +441,7 @@ Feature: elements-id-legacy-cf
 
     When request_get
     """
-    elements/v0.jsonld?legacyElemCodes=TA&cfStandardNames=cloud_area_fraction
+    elements/v0.jsonld?legacyElementCodes=TA&cfStandardNames=cloud_area_fraction
     """
 
     Then response_jsonSubset_404
@@ -456,8 +451,7 @@ Feature: elements-id-legacy-cf
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "No data found for this combination of element IDs, legacy element codes, and CF standard names",
-    "help": "Specify a valid combination \\(note that leaving out one of the three components will match anything\\)"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """

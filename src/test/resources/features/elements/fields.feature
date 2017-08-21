@@ -119,7 +119,7 @@ Feature: elements-fields
   "error" : {
     "code" : 400,
     "message" : "Bad Request",
-    "reason" : "Invalid fields in the query parameter: foobar"
+    "reason" : "Unsupported field: foobar"
   }
 }
     """
