@@ -15,16 +15,9 @@ Feature: observations-overall
     observations/v0.jsonld
     """
 
-    Then response_jsonSubset_400
+    Then response_contains_400
     """
-{
-  "@type" : "ErrorResponse",
-  "error" : {
-    "code" : 400,
-    "message" : "Bad Request",
-    "reason" : "Missing parameter: sources"
-  }
-}
+Missing parameter: sources
     """
 
 
@@ -45,7 +38,7 @@ Feature: observations-overall
     "code" : 400,
     "message" : "Bad Request",
     "reason" : "Unsupported field in query string: foo",
-    "help" : "Supported fields: elements, performancecategory, exposurecategory, referencetime, fields, sources"
+    "help" : "Supported fields: elements, levels, performancecategory, exposurecategory, referencetime, fields, sources"
   }
 }
     """

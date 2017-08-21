@@ -103,7 +103,7 @@ Feature: observations-examples-availabletimeseries
   "error" : {
     "code" : 500,
     "message" : "Internal Server Error",
-    "reason" : "Sensor level and level unit registered in t_elem_map_timeseries for from_direction_of_max\\(wind_speed PT1H\\), but no info at all was found for this element in the elements/ endpoint"
+    "reason" : "Sensor level registered in t_elem_map_timeseries for from_direction_of_max\\(wind_speed PT1H\\), but no info at all was found for this element in the elements/ endpoint"
   }
 }
     """
