@@ -96,10 +96,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-id
-  Scenario: elements-non-existent-id
+  @elements-non-existing-id
+  Scenario: elements-non-existing-id
 
-    # Specifying a non-existent element ID should return status=404
+    # Specifying a non-existing element ID should return status=404
 
     Given a valid public MET API client ID
 
@@ -182,10 +182,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-legacy
-  Scenario: elements-non-existent-legacy
+  @elements-non-existing-legacy
+  Scenario: elements-non-existing-legacy
 
-    # Specifying a non-existent legacy element code should return status=404
+    # Specifying a non-existing legacy element code should return status=404
 
     Given a valid public MET API client ID
 
@@ -268,10 +268,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-cf
-  Scenario: elements-non-existent-cf
+  @elements-non-existing-cf
+  Scenario: elements-non-existing-cf
 
-    # Specifying a non-existent CF standard name should return status=404
+    # Specifying a non-existing CF standard name should return status=404
 
     Given a valid public MET API client ID
 
@@ -295,10 +295,10 @@ Feature: elements-id-legacy-cf
 
   # --- combinations of element ID, legacy element code and CF standard name ------------------------------------------------------
 
-  @elements-existent-combination-id-legacy
-  Scenario: elements-existent-combination-id-legacy
+  @elements-existing-combination-id-legacy
+  Scenario: elements-existing-combination-id-legacy
 
-    # Specifying an existent combination of element ID and legacy element code should return status=200
+    # Specifying an existing combination of element ID and legacy element code should return status=200
 
     Given a valid public MET API client ID
 
@@ -324,10 +324,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-combination-id-legacy
-  Scenario: elements-non-existent-combination-id-legacy
+  @elements-non-existing-combination-id-legacy
+  Scenario: elements-non-existing-combination-id-legacy
 
-    # Specifying a non-existent combination of element ID and legacy element code should return status=404
+    # Specifying a non-existing combination of element ID and legacy element code should return status=404
 
     Given a valid public MET API client ID
 
@@ -349,10 +349,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-existent-combination-id-cf
-  Scenario: elements-existent-combination-id-cf
+  @elements-existing-combination-id-cf
+  Scenario: elements-existing-combination-id-cf
 
-    # Specifying an existent combination of element ID and CF standard name should return status=200
+    # Specifying an existing combination of element ID and CF standard name should return status=200
 
     Given a valid public MET API client ID
 
@@ -376,10 +376,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-combination-id-cf
-  Scenario: elements-non-existent-combination-id-cf
+  @elements-non-existing-combination-id-cf
+  Scenario: elements-non-existing-combination-id-cf
 
-    # Specifying a non-existent combination of element ID and CF standard name should return status=404
+    # Specifying a non-existing combination of element ID and CF standard name should return status=404
 
     Given a valid public MET API client ID
 
@@ -401,10 +401,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-existent-combination-legacy-cf
-  Scenario: elements-existent-combination-legacy-cf
+  @elements-existing-combination-legacy-cf
+  Scenario: elements-existing-combination-legacy-cf
 
-    # Specifying an existent combination of legacy element code and CF standard name should return status=200
+    # Specifying an existing combination of legacy element code and CF standard name should return status=200
 
     Given a valid public MET API client ID
 
@@ -432,10 +432,10 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existent-combination-legacy-cf
-  Scenario: elements-non-existent-combination-legacy-cf
+  @elements-non-existing-combination-legacy-cf
+  Scenario: elements-non-existing-combination-legacy-cf
 
-    # Specifying a non-existent combination of legacy element code and CF standard name should return status=404
+    # Specifying a non-existing combination of legacy element code and CF standard name should return status=404
 
     Given a valid public MET API client ID
 

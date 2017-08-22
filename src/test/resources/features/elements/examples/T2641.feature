@@ -2,7 +2,7 @@
 Feature: elements-examples-T2641
   # Examples specified in Phabricator task T2641.
 
-  # Note: Example 1 is already covered in the scenario with tag `@elements-non-existent-legacy` (file `id-legacy-cf.feature`)).
+  # Note: Example 1 is already covered in the scenario with tag `@elements-non-existing-legacy` (file `id-legacy-cf.feature`)).
 
   @elements-examples-T2641-example2
   Scenario: elements-examples-T2641-example2

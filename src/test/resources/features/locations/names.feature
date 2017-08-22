@@ -95,10 +95,10 @@ Feature: locations-names
     """
 
 
-  @locations-non-existent-name
-  Scenario: locations-non-existent-name
+  @locations-non-existing-name
+  Scenario: locations-non-existing-name
 
-    # Specifying a non-existent location name should return status=404
+    # Specifying a non-existing location name should return status=404
 
     Given a valid public MET API client ID
 

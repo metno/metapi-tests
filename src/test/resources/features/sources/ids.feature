@@ -120,10 +120,10 @@ Feature: sources-ids
     """
 
 
-  @sources-non-existent-source
-  Scenario: sources-non-existent-source
+  @sources-non-existing-source
+  Scenario: sources-non-existing-source
 
-    # Specifying a non-existent source should return status=404
+    # Specifying a non-existing source should return status=404
 
     Given a valid public MET API client ID
 

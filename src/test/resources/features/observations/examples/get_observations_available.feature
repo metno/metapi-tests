@@ -49,13 +49,13 @@ Feature: observations-examples-availabletimeseries
     """
 
 
-  @observations-examples-get-available-observations-for-non-existent-source
-  Scenario: observations-examples-get-available-observations-for-non-existent-source
+  @observations-examples-get-available-observations-for-non-existing-source
+  Scenario: observations-examples-get-available-observations-for-non-existing-source
 
     Given a valid public MET API client ID
 
     When request_get
-    # I request available observation timeseries with a non-existent source
+    # I request available observation timeseries with a non-existing source
     """
     observations/availableTimeSeries/v0.jsonld?sources=SN99999&referencetime=2004-07-01T00:00:00/2004-09-01T00:00:00&elements=max(air_temperature PT1H)
     """
@@ -142,8 +142,8 @@ Feature: observations-examples-availabletimeseries
 
 
 
-  @observations-examples-get-available-observations-for-non-existent-referencetime
-  Scenario: observations-examples-get-available-observations-for-non-existent-referencetime
+  @observations-examples-get-available-observations-for-non-existing-referencetime
+  Scenario: observations-examples-get-available-observations-for-non-existing-referencetime
 
     Given a valid public MET API client ID
 
@@ -357,8 +357,8 @@ Feature: observations-examples-availabletimeseries
     """
 
 
-  @observations-examples-get-available-observations-for-non-existent-elements
-  Scenario: observations-examples-get-available-observations-for-non-existent-elements
+  @observations-examples-get-available-observations-for-non-existing-elements
+  Scenario: observations-examples-get-available-observations-for-non-existing-elements
 
     Given a valid public MET API client ID
 
