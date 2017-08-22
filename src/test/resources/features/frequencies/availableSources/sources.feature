@@ -82,3 +82,34 @@ Feature: frequencies-rainfall-availablesources-sources
   ]
 }
     """
+
+
+  @frequencies-rainfall-availablesources-idf_bma1km
+  Scenario: frequencies-rainfall-availablesources-idf_bma1km
+
+# Specifying idf_bma1km should return the expected result.
+
+    Given a valid public MET API client ID
+
+    When request_get
+    """
+    frequencies/rainfall/availableSources/v0.jsonld?sources=idf_bma1km
+    """
+
+    Then response_jsonSubset_200
+    """
+{
+  "@type" : "RainfallIDFSourcesResponse",
+  "currentItemCount" : 1,
+  "itemsPerPage" : 1,
+  "offset" : 0,
+  "totalItemCount" : 1,
+  "data" : [ {
+    "sourceId" : "idf_bma1km",
+    "version" : "1",
+    "validFrom" : "1957-01-01T00:00:00Z",
+    "validTo" : "2016-01-01T00:00:00Z",
+    "numberOfSeasons" : 59
+  } ]
+}
+    """
