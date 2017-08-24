@@ -11,7 +11,7 @@ Feature: genericrequest-example1
     When request_get
     # request test #1
     """
-    elements/v0.jsonld?lang=en-US&legacyElemCodes=TAN
+    elements/v0.jsonld?lang=en-US&oldElemCodes=TAN
     """
 
     Then response_jsonSubset_200

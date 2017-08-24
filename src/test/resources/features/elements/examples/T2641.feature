@@ -2,7 +2,7 @@
 Feature: elements-examples-T2641
   # Examples specified in Phabricator task T2641.
 
-  # Note: Example 1 is already covered in the scenario with tag `@elements-non-existing-legacy` (file `id-legacy-cf.feature`)).
+  # Note: Example 1 is already covered in the scenario with tag `@elements-non-existing-old` (file `id-old-cf.feature`)).
 
   @elements-examples-T2641-example2
   Scenario: elements-examples-T2641-example2
@@ -11,7 +11,7 @@ Feature: elements-examples-T2641
 
     When request_get
     """
-    elements/v0.jsonld?legacyElementCodes=TAN
+    elements/v0.jsonld?oldElementCodes=TAN
     """
 
     Then response_jsonSubset_200
@@ -36,7 +36,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN", "TAND", "TAN_24", "X1TAN_12" ],
       "unit" : "degC"
     },
@@ -59,7 +59,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN" ],
       "unit" : "degC"
     },
@@ -82,7 +82,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN" ],
       "unit" : "degC"
     },
@@ -105,7 +105,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN" ],
       "unit" : "degC"
     },
@@ -128,7 +128,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN" ],
       "unit" : "degC"
     },
@@ -151,7 +151,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN" ],
       "unit" : "degC"
     },
@@ -174,7 +174,7 @@ Feature: elements-examples-T2641
       "methodDescription" : "Minimum value observed or calculated in the given period"
     },
     "category" : "Temperature",
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TAN", "X1TAN", "X2TAN" ],
       "unit" : "degC"
     },
@@ -230,7 +230,7 @@ Feature: elements-examples-T2641
       "defaultValue" : 10,
       "values" : [ 1, 2, 5, 10, 20, 30, 50, 100 ]
     },
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TJM", "TJM1", "TJM10", "TJM100", "TJM2", "TJM20", "TJM30", "TJM5", "TJM50" ],
       "unit" : "degC"
     },
@@ -256,7 +256,7 @@ Feature: elements-examples-T2641
       "defaultValue" : 10,
       "values" : [ 0, 1, 5, 10, 15, 20, 25, 30, 40, 45, 50, 80, 95, 100, 120, 160, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 670, 700, 750, 800, 850, 900, 950, 1000, 1100, 1200, 1300, 1400, 1500, 1750, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5250, 6000, 7000, 8000, 8500, 9000, 9500, 9750, 10000 ]
     },
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TJ0", "TJ1", "TJ10", "TJ100", "TJ1000", "TJ10000", "TJ1100", "TJ120", "TJ1200", "TJ1300", "TJ1400", "TJ15", "TJ1500", "TJ160", "TJ1750", "TJ20", "TJ200", "TJ2000", "TJ25", "TJ250", "TJ2500", "TJ30", "TJ300", "TJ3000", "TJ350", "TJ3500", "TJ40", "TJ400", "TJ4000", "TJ45", "TJ450", "TJ4500", "TJ5", "TJ50", "TJ500", "TJ5000", "TJ5250", "TJ550", "TJ600", "TJ6000", "TJ650", "TJ670", "TJ700", "TJ7000", "TJ750", "TJ80", "TJ800", "TJ8000", "TJ850", "TJ8500", "TJ900", "TJ9000", "TJ95", "TJ950", "TJ9500", "TJ9750", "X1TJ1000", "X1TJ1100", "X1TJ120", "X1TJ1300", "X1TJ1500", "X1TJ160", "X1TJ20", "X1TJ200", "X1TJ250", "X1TJ300", "X1TJ350", "X1TJ40", "X1TJ400", "X1TJ500", "X1TJ700", "X1TJ80", "X1TJ900", "X1TJM10", "X1TJM20", "X1TJM50" ],
       "unit" : "degC"
     },

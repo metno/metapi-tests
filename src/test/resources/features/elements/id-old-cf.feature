@@ -1,6 +1,6 @@
-@elements @elements-id-legacy-cf
-Feature: elements-id-legacy-cf
-  # Acceptance tests for the query string fields 'ids', 'legacyElementCodes', and 'cfStandardNames'.
+@elements @elements-id-old-cf
+Feature: elements-id-old-cf
+  # Acceptance tests for the query string fields 'ids', 'oldElementCodes', and 'cfStandardNames'.
 
   # --- element ID ------------------------------------------------------
 
@@ -121,19 +121,19 @@ Feature: elements-id-legacy-cf
     """
 
 
-  # --- legacy element code ------------------------------------------------------
+  # --- old element code ------------------------------------------------------
 
-  @elements-one-legacy
-  Scenario: elements-one-legacy
+  @elements-one-old
+  Scenario: elements-one-old
 
-    # Specifying a single legacy element code should return data for that code.
+    # Specifying a single old element code should return data for that code.
 
     Given a valid public MET API client ID
 
     When request_get
     # when we ask for data for one element ...
     """
-    elements/v0.jsonld?legacyElementCodes=TA
+    elements/v0.jsonld?oldElementCodes=TA
     """
 
     Then response_jsonSubset_200
@@ -141,7 +141,7 @@ Feature: elements-id-legacy-cf
     """
 {
   "data" : [ {
-    "legacyConvention" : {
+    "oldConvention" : {
       "elementCodes" : [ "TA" ]
     }
   } ]
@@ -152,14 +152,14 @@ Feature: elements-id-legacy-cf
   @elements-two-legacies
   Scenario: elements-two-legacies
 
-    # Specifying two legacy element codes should return data for those codes.
+    # Specifying two old element codes should return data for those codes.
 
     Given a valid public MET API client ID
 
     When request_get
     # when we ask for data for two elements ...
     """
-    elements/v0.jsonld?legacyElementCodes=TA,FF
+    elements/v0.jsonld?oldElementCodes=TA,FF
     """
 
     Then response_jsonSubset_200
@@ -168,12 +168,12 @@ Feature: elements-id-legacy-cf
 {
   "data" : [
     {
-      "legacyConvention" : {
+      "oldConvention" : {
         "elementCodes" : [ "TA" ]
       }
     },
     {
-      "legacyConvention" : {
+      "oldConvention" : {
         "elementCodes" : [ "FF" ]
       }
     }
@@ -182,16 +182,16 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existing-legacy
-  Scenario: elements-non-existing-legacy
+  @elements-non-existing-old
+  Scenario: elements-non-existing-old
 
-    # Specifying a non-existing legacy element code should return status=404
+    # Specifying a non-existing old element code should return status=404
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    elements/v0.jsonld?legacyElementCodes=foobar
+    elements/v0.jsonld?oldElementCodes=foobar
     """
 
     Then response_jsonSubset_404
@@ -293,18 +293,18 @@ Feature: elements-id-legacy-cf
     """
 
 
-  # --- combinations of element ID, legacy element code and CF standard name ------------------------------------------------------
+  # --- combinations of element ID, old element code and CF standard name ------------------------------------------------------
 
-  @elements-existing-combination-id-legacy
-  Scenario: elements-existing-combination-id-legacy
+  @elements-existing-combination-id-old
+  Scenario: elements-existing-combination-id-old
 
-    # Specifying an existing combination of element ID and legacy element code should return status=200
+    # Specifying an existing combination of element ID and old element code should return status=200
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    elements/v0.jsonld?ids=air_temperature&legacyElementCodes=TA
+    elements/v0.jsonld?ids=air_temperature&oldElementCodes=TA
     """
 
     Then response_jsonSubset_200
@@ -313,7 +313,7 @@ Feature: elements-id-legacy-cf
   "data": [
     {
       "id": "air_temperature",
-      "legacyConvention": {
+      "oldConvention": {
         "elementCodes": [
           "TA"
         ]
@@ -324,16 +324,16 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existing-combination-id-legacy
-  Scenario: elements-non-existing-combination-id-legacy
+  @elements-non-existing-combination-id-old
+  Scenario: elements-non-existing-combination-id-old
 
-    # Specifying a non-existing combination of element ID and legacy element code should return status=404
+    # Specifying a non-existing combination of element ID and old element code should return status=404
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    elements/v0.jsonld?ids=air_temperature&legacyElementCodes=FFB
+    elements/v0.jsonld?ids=air_temperature&oldElementCodes=FFB
     """
 
     Then response_jsonSubset_404
@@ -401,16 +401,16 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-existing-combination-legacy-cf
-  Scenario: elements-existing-combination-legacy-cf
+  @elements-existing-combination-old-cf
+  Scenario: elements-existing-combination-old-cf
 
-    # Specifying an existing combination of legacy element code and CF standard name should return status=200
+    # Specifying an existing combination of old element code and CF standard name should return status=200
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    elements/v0.jsonld?legacyElementCodes=TA&cfStandardNames=air_temperature
+    elements/v0.jsonld?oldElementCodes=TA&cfStandardNames=air_temperature
     """
 
     Then response_jsonSubset_200
@@ -418,7 +418,7 @@ Feature: elements-id-legacy-cf
 {
   "data": [
     {
-      "legacyConvention": {
+      "oldConvention": {
         "elementCodes": [
           "TA"
         ]
@@ -432,16 +432,16 @@ Feature: elements-id-legacy-cf
     """
 
 
-  @elements-non-existing-combination-legacy-cf
-  Scenario: elements-non-existing-combination-legacy-cf
+  @elements-non-existing-combination-old-cf
+  Scenario: elements-non-existing-combination-old-cf
 
-    # Specifying a non-existing combination of legacy element code and CF standard name should return status=404
+    # Specifying a non-existing combination of old element code and CF standard name should return status=404
 
     Given a valid public MET API client ID
 
     When request_get
     """
-    elements/v0.jsonld?legacyElementCodes=TA&cfStandardNames=cloud_area_fraction
+    elements/v0.jsonld?oldElementCodes=TA&cfStandardNames=cloud_area_fraction
     """
 
     Then response_jsonSubset_404
