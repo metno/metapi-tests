@@ -85,26 +85,13 @@ Feature: observations-examples-availabletimeseries
     observations/availableTimeSeries/v0.jsonld?sources=SN3290:all
     """
 
-# DESIRED RESPONSE:
-#    Then response_jsonSubset_200
-#    # get sensors 0 and 1
-#    """
-#{
-#  "data" : [ {
-#    "sourceId": "SN3290:[0|1]"
-#  } ]
-#}
-#    """
-
-# TEMPORARY RESPONSE AWAITING CONSISTENCY BETWEEN ELEMENT IDS IN t_elem_map_timeseries AND elements/ ENDPOINT:
-    Then response_jsonSubset_500
+    Then response_jsonSubset_200
+    # get sensors 0 and 1
     """
 {
-  "error" : {
-    "code" : 500,
-    "message" : "Internal Server Error",
-    "reason" : "Sensor level registered in t_elem_map_timeseries for from_direction_of_max\\(wind_speed PT1H\\), but no info at all was found for this element in the elements/ endpoint"
-  }
+  "data" : [ {
+    "sourceId": "SN3290:[0|1]"
+  } ]
 }
     """
 
