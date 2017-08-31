@@ -29,7 +29,7 @@ Feature: frequencies-rainfall-unit
       "values" :
       [
         {
-          "intensity" : 187.3
+          "intensity" : 188.5
         }
       ]
     }
@@ -58,7 +58,7 @@ Feature: frequencies-rainfall-unit
       "values" :
       [
         {
-          "intensity" : 187.3
+          "intensity" : 188.5
         }
       ]
     }
@@ -94,7 +94,7 @@ Feature: frequencies-rainfall-unit
       "values" :
       [
         {
-          "intensity" : 5.619
+          "intensity" : 5.655
         }
       ]
     }

@@ -8,7 +8,7 @@ Feature: frequencies-examples-wsklima
     Given a valid public MET API client ID
 
     When request_get
-    # I request IVF data for Oslo-Blindern SN18701
+    # I request IDF data for Oslo-Blindern SN18701
     """
     frequencies/rainfall/v0.jsonld?sources=SN18701
     """
@@ -22,11 +22,10 @@ Feature: frequencies-examples-wsklima
   "data" : [ {
     "sourceId" : "SN18701",
     "operatingPeriods" : [ "1968-01-01T00:00:00Z/1968-11-30T00:00:00Z" ],
-    "numberOfSeasons" : 46,
+    "numberOfSeasons" : 48,
     "unit" : "l/s\\*Ha",
     "values" : [ {
-      "intensity" : "291\\.2",
-      "duration" : 1,
+      "intensity" : "292\\.3",
       "frequency" : 2
     } ]
   } ]
