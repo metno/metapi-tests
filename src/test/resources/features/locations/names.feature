@@ -114,7 +114,7 @@ Feature: locations-names
   "error" : {
     "code" : 404,
     "message" : "Not found",
-    "reason" : "Could not find any data locations for location names foobar"
+    "reason" : "No data found for this combination of query parameters"
    }
 }
     """
